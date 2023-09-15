@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply bg-primary-bg-light w-full h-full;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    @apply bg-primary-bg-dark;
+  }
+}
