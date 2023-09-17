@@ -1,5 +1,6 @@
+import { IconContext } from "react-icons";
 import { Header } from "./components/Header";
-import { NavBar } from "./components/NavBar/NavBar";
+import { NavBar } from "./components/NavBar";
 import { Timer } from "./components/Timer";
 
 function App() {
@@ -9,8 +10,15 @@ function App() {
     px-[45px] py-[30px]"
     >
       <Header />
-      <Timer />
-      <NavBar />
+      <IconContext.Provider
+        value={{
+          size: "35px",
+          className: "dark:stroke-primary stroke-primary-dark",
+        }}
+      >
+        <Timer />
+        <NavBar />
+      </IconContext.Provider>
     </main>
   );
 }

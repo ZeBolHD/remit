@@ -7,7 +7,14 @@ interface NavBarItemProps {
 
 export const NavBarItem = ({ children, isActive }: NavBarItemProps) => {
   return (
-    <li className={`w-[30px] h-[30px] ${isActive ? "stroke-red-500" : ""}`}>
+    <li
+      className={`${
+        isActive
+          ? "!stroke-active"
+          : `stroke-primary-dark dark:stroke-primary 
+        fill-primary-dark dark:fill-primary`
+      }`}
+    >
       {children}
     </li>
   );

@@ -20,6 +20,11 @@ const timerSlice = createSlice({
   initialState,
   name: "timer",
   reducers: {
+    startTimer: (state) => {
+      state.isStarted = true;
+      state.isPlaying = true;
+    },
+
     tickTimer: (state) => {
       state.remainingTime -= 1;
     },
@@ -46,7 +51,7 @@ const timerSlice = createSlice({
   },
 });
 
-export const { tickTimer, setTimerId, toggleTimer, resetTimer } =
+export const { tickTimer, setTimerId, toggleTimer, resetTimer, startTimer } =
   timerSlice.actions;
 
 export default timerSlice.reducer;
