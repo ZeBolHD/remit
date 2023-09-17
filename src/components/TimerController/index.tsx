@@ -7,9 +7,14 @@ import {
   startTimer,
   tickTimer,
   toggleTimer,
+  resetTimer,
 } from "../../redux/timer/slice";
 
-import { IoPlayOutline, IoPauseOutline } from "react-icons/io5";
+import {
+  IoPlayOutline,
+  IoPauseOutline,
+  IoPlayForwardOutline,
+} from "react-icons/io5";
 
 export const TimerController = () => {
   const { isPlaying, timerId, isStarted } = useSelector(selectTimer);
@@ -19,6 +24,7 @@ export const TimerController = () => {
   const handleTimer = () => {
     if (isPlaying) {
       clearInterval(timerId);
+
       dispatch(toggleTimer());
     } else {
       const timerId = setInterval(() => {
@@ -42,16 +48,30 @@ export const TimerController = () => {
     }
   };
 
+  const handleResetTimer = () => {
+    dispatch(resetTimer());
+  };
+
   return (
     <div
-      className={`w-full h-[50px] box-border flex items-center justify-center border-[2px] 
-      rounded-large mb-0 mt-auto dark:border-primary border-primary-dark`}
+      className={`w-full h-[50px] box-border flex items-center px-[60px] border-[2px] 
+      rounded-large mb-0 mt-auto dark:border-primary border-primary-dark
+      ${isStarted ? "justify-between" : "justify-center"}`}
     >
       {!isStarted ? (
         <button onClick={handleStartTimer}>
-          {isPlaying ? <IoPauseOutline /> : <IoPlayOutline />}
+          <IoPlayOutline />
         </button>
-      ) : null}
+      ) : (
+        <>
+          <button onClick={handleTimer}>
+            {isPlaying ? <IoPauseOutline /> : <IoPlayOutline />}
+          </button>
+          <button onClick={handleResetTimer}>
+            <IoPlayForwardOutline />
+          </button>
+        </>
+      )}
     </div>
   );
 };
