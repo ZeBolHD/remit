@@ -15,6 +15,7 @@ import {
   IoPauseOutline,
   IoPlayForwardOutline,
 } from "react-icons/io5";
+import { AnimatePresence, motion } from "framer-motion";
 
 export const TimerController = () => {
   const { isPlaying, timerId, isStarted } = useSelector(selectTimer);
@@ -53,25 +54,65 @@ export const TimerController = () => {
   };
 
   return (
-    <div
-      className={`w-full h-[50px] box-border flex items-center px-[60px] border-[2px] 
+    <motion.div
+      className={`w-full h-[50px] box-border relative flex items-center px-[60px] border-[2px] 
       rounded-large mb-0 mt-auto dark:border-primary border-primary-dark
-      ${isStarted ? "justify-between" : "justify-center"}`}
+      justify-center`}
     >
-      {!isStarted ? (
-        <button onClick={handleStartTimer}>
-          <IoPlayOutline />
-        </button>
-      ) : (
-        <>
-          <button onClick={handleTimer}>
-            {isPlaying ? <IoPauseOutline /> : <IoPlayOutline />}
-          </button>
-          <button onClick={handleResetTimer}>
-            <IoPlayForwardOutline />
-          </button>
-        </>
-      )}
-    </div>
+      <AnimatePresence>
+        {!isStarted && (
+          <motion.button
+            onClick={handleStartTimer}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{
+              duration: 0.3,
+              type: "spring",
+              damping: 30,
+              stiffness: 450,
+            }}
+          >
+            <IoPlayOutline />
+          </motion.button>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {isStarted && (
+          <>
+            <motion.button
+              className="absolute"
+              onClick={handleTimer}
+              initial={{ left: "50%", translateX: "-50%" }}
+              animate={{ left: "15%", translateX: 0 }}
+              exit={{ left: "-5%", opacity: 0 }}
+              transition={{
+                duration: 0.3,
+                type: "spring",
+                damping: 30,
+                stiffness: 450,
+              }}
+            >
+              {isPlaying ? <IoPauseOutline /> : <IoPlayOutline />}
+            </motion.button>
+            <motion.button
+              className="absolute"
+              onClick={handleResetTimer}
+              initial={{ right: "50%", translateX: "50%" }}
+              animate={{ right: "15%", translateX: 0 }}
+              exit={{ right: "-5%", opacity: 0 }}
+              transition={{
+                duration: 0.3,
+                type: "spring",
+                damping: 30,
+                stiffness: 450,
+              }}
+            >
+              <IoPlayForwardOutline />
+            </motion.button>
+          </>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 };

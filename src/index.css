@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-primary-bg-light w-full h-full;
+  @apply bg-primary-bg-light w-full h-full select-none;
 }
 
 @media (prefers-color-scheme: dark) {
