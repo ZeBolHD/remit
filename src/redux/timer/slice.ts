@@ -1,29 +1,27 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
-import { formatTime } from "../../helpers/formatTimer";
-import { useAppDispatch } from "../store";
 
 interface timerState {
   time: number;
   timerId: number;
-  remainingTime: string;
+  remainingTime: number;
+  isStarted: boolean;
   isPlaying: boolean;
 }
 
 const initialState: timerState = {
-  time: 3000,
+  time: 10,
   timerId: 0,
-  remainingTime: formatTime(3000),
+  remainingTime: 10,
   isPlaying: false,
+  isStarted: false,
 };
 
 const timerSlice = createSlice({
   initialState,
   name: "timer",
   reducers: {
-    handleTimer: (state) => {
-      state.time -= 1;
-      state.remainingTime = formatTime(state.time);
+    tickTimer: (state) => {
+      state.remainingTime -= 1;
     },
 
     toggleTimer: (state) => {
@@ -33,12 +31,22 @@ const timerSlice = createSlice({
     setTimerId(state, action: PayloadAction<number>) {
       state.timerId = action.payload;
     },
+
+    resetTimer(state) {
+      state.time = initialState.time;
+      state.remainingTime = initialState.remainingTime;
+      state.isPlaying = false;
+      state.isStarted = false;
+
+      clearInterval(state.timerId);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase("startTimer", () => {});
   },
 });
 
-export const { handleTimer, setTimerId, toggleTimer } = timerSlice.actions;
+export const { tickTimer, setTimerId, toggleTimer, resetTimer } =
+  timerSlice.actions;
 
 export default timerSlice.reducer;

@@ -3,35 +3,31 @@ import { useSelector } from "react-redux";
 import { formatTime } from "../../helpers/formatTimer";
 import { selectTimer } from "../../redux/selectors";
 import { useAppDispatch } from "../../redux/store";
-import { setTimerId, handleTimer, toggleTimer } from "../../redux/timer/slice";
+import {
+  resetTimer,
+  setTimerId,
+  tickTimer,
+  toggleTimer,
+} from "../../redux/timer/slice";
+import { TimerController } from "../TimerController";
 
 export const Timer = () => {
-  const { isPlaying, remainingTime, timerId, time } = useSelector(selectTimer);
+  const { remainingTime, timerId } = useSelector(selectTimer);
   const dispatch = useAppDispatch();
 
-  const handlePlay = () => {
-    if (isPlaying) {
+  useEffect(() => {
+    if (remainingTime === 0) {
       clearInterval(timerId);
-      dispatch(toggleTimer());
-    } else {
-      const timerId = setInterval(() => {
-        dispatch(handleTimer());
-      }, 1000);
-
-      dispatch(toggleTimer());
-      dispatch(setTimerId(timerId));
+      dispatch(resetTimer());
     }
-  };
-
-  // useEffect(() => {
-  // const interval = setInterval(tick, 1000);
-  //   return () => clearInterval(interval);
-  // }, []);
+  });
 
   return (
     <div className="text-center h-full flex flex-col items-center w-full ">
-      <h2 className="text-[100px] font-normal h-fit">{remainingTime}</h2>
-      <button onClick={handlePlay}>{isPlaying ? "Stop" : "Play"}</button>
+      <h2 className="text-[100px] font-normal h-fit m-auto">
+        {formatTime(remainingTime)}
+      </h2>
+      <TimerController />
     </div>
   );
 };

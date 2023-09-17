@@ -10,6 +10,10 @@ export default {
         "primary-bg-light": "#DDDDDD",
         active: "#D77A45",
       },
+      borderRadius: {
+        large: "50px",
+        medium: "25px",
+      },
     },
   },
   plugins: [],
