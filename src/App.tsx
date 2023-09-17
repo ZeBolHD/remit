@@ -6,8 +6,8 @@ import { Timer } from "./components/Timer";
 function App() {
   return (
     <main
-      className="text-primary-dark dark:text-primary w-full h-full max-sm:h-screen flex flex-col
-    px-[45px] py-[30px]"
+      className="text-primary-dark  dark:text-primary w-full h-full flex flex-col
+    px-[45px] py-[30px] m-0"
     >
       <Header />
       <IconContext.Provider

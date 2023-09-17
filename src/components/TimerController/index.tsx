@@ -59,24 +59,22 @@ export const TimerController = () => {
       rounded-large mb-0 mt-auto dark:border-primary border-primary-dark
       justify-center`}
     >
-      <AnimatePresence>
-        {!isStarted && (
-          <motion.button
-            onClick={handleStartTimer}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{
-              duration: 0.3,
-              type: "spring",
-              damping: 30,
-              stiffness: 450,
-            }}
-          >
-            <IoPlayOutline />
-          </motion.button>
-        )}
-      </AnimatePresence>
+      {!isStarted && (
+        <motion.button
+          onClick={handleStartTimer}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.2,
+            type: "spring",
+            damping: 30,
+            stiffness: 450,
+          }}
+        >
+          <IoPlayOutline />
+        </motion.button>
+      )}
+
       <AnimatePresence>
         {isStarted && (
           <>
