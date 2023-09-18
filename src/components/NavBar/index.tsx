@@ -6,9 +6,19 @@ import {
   AiOutlineClockCircle,
   AiOutlineUnorderedList,
 } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { selectNavBar } from "../../redux/selectors";
+import { Tabs } from "../../types";
+import { setTab } from "../../redux/navBar/slice";
 
 export const NavBar = () => {
-  const isActive = true;
+  const { activeTab } = useSelector(selectNavBar);
+
+  const dispatch = useDispatch();
+
+  const handleTab = (tab: Tabs) => {
+    dispatch(setTab(tab));
+  };
 
   return (
     <nav
@@ -16,19 +26,35 @@ export const NavBar = () => {
       border-[2px] dark:border-primary border-primary-dark rounded-medium"
     >
       <ul className="flex justify-between h-full items-center">
-        <NavBarItem isActive key={"timer"}>
+        <NavBarItem key={Tabs.TIMER}>
           <AiOutlineClockCircle
-            className={isActive ? "!stroke-active !fill-active" : ""}
+            onClick={() => handleTab(Tabs.TIMER)}
+            className={
+              activeTab === Tabs.TIMER ? "!stroke-active !fill-active" : ""
+            }
           />
         </NavBarItem>
-        <NavBarItem key={"stats"}>
-          <AiOutlineLineChart />
+        <NavBarItem key={Tabs.STATS}>
+          <AiOutlineLineChart
+            onClick={() => handleTab(Tabs.STATS)}
+            className={
+              activeTab === Tabs.STATS ? "!stroke-active !fill-active" : ""
+            }
+          />
         </NavBarItem>
-        <NavBarItem key={"tags"}>
-          <AiOutlineUnorderedList />
+        <NavBarItem key={Tabs.TAGS}>
+          <AiOutlineUnorderedList
+            onClick={() => handleTab(Tabs.TAGS)}
+            className={
+              activeTab === Tabs.TAGS ? "!stroke-active !fill-active" : ""
+            }
+          />
         </NavBarItem>
-        <NavBarItem key={"settings"}>
-          <HiOutlineAdjustmentsHorizontal />
+        <NavBarItem key={Tabs.SETTINGS}>
+          <HiOutlineAdjustmentsHorizontal
+            onClick={() => handleTab(Tabs.SETTINGS)}
+            className={activeTab === Tabs.SETTINGS ? "!stroke-active" : ""}
+          />
         </NavBarItem>
       </ul>
     </nav>
