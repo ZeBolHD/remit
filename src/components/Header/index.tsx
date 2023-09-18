@@ -11,7 +11,7 @@ export const Header = () => {
   const { isStarted } = useSelector(selectTimer);
 
   return (
-    <header className="text-center overflow-hidden">
+    <header className="text-center overflow-hidden h-[50px] w-full">
       <AnimatePresence>
         {activeTab === Tabs.REMIT && (
           <HeaderItem>
