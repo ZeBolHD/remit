@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
+import { ReactNode } from "react";
 
 interface HeaderItemProps {
-  heading: string;
+  heading?: string;
+  children?: ReactNode;
 }
 
-export const HeaderItem = ({ heading }: HeaderItemProps) => {
+export const HeaderItem = ({ heading, children }: HeaderItemProps) => {
   return (
     <motion.h1
       initial={{ left: "-100%", opacity: 0 }}
@@ -16,9 +18,9 @@ export const HeaderItem = ({ heading }: HeaderItemProps) => {
         damping: 30,
         stiffness: 400,
       }}
-      className="text-[40px] font-normal absolute translate-x-[-50%]"
+      className="text-[40px] font-normal absolute translate-x-[-50%] break-keep w-full"
     >
-      {heading}
+      {heading || children}
     </motion.h1>
   );
 };
