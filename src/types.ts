@@ -1,6 +1,6 @@
 export enum Tabs {
-  TIMER = "timer",
-  STATS = "stats",
-  TAGS = "tags",
-  SETTINGS = "settings",
+  REMIT = "Remit",
+  STATS = "Stats",
+  TAGS = "Tags",
+  SETTINGS = "Settings",
 }

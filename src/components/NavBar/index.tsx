@@ -1,4 +1,10 @@
-import { NavBarItem } from "../NavBarItem";
+import { useDispatch, useSelector } from "react-redux";
+import { selectNavBar } from "../../redux/selectors";
+
+import { setTab } from "../../redux/navBar/slice";
+import { Tabs } from "../../types";
+
+import { NavBarItem } from "./NavBarItem";
 
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
 import {
@@ -6,10 +12,6 @@ import {
   AiOutlineClockCircle,
   AiOutlineUnorderedList,
 } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
-import { selectNavBar } from "../../redux/selectors";
-import { Tabs } from "../../types";
-import { setTab } from "../../redux/navBar/slice";
 
 export const NavBar = () => {
   const { activeTab } = useSelector(selectNavBar);
@@ -26,11 +28,11 @@ export const NavBar = () => {
       border-[2px] dark:border-primary border-primary-dark rounded-medium"
     >
       <ul className="flex justify-between h-full items-center">
-        <NavBarItem key={Tabs.TIMER}>
+        <NavBarItem key={Tabs.REMIT}>
           <AiOutlineClockCircle
-            onClick={() => handleTab(Tabs.TIMER)}
+            onClick={() => handleTab(Tabs.REMIT)}
             className={
-              activeTab === Tabs.TIMER ? "!stroke-active !fill-active" : ""
+              activeTab === Tabs.REMIT ? "!stroke-active !fill-active" : ""
             }
           />
         </NavBarItem>

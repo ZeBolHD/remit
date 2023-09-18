@@ -6,7 +6,7 @@ interface NavBarState {
 }
 
 const initialState: NavBarState = {
-  activeTab: Tabs.TIMER,
+  activeTab: Tabs.REMIT,
 };
 
 export const navBarSlice = createSlice({
