@@ -1,6 +1,11 @@
 import { NavBarItem } from "../NavBarItem";
 
-import { IoTimeOutline } from "react-icons/io5";
+import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
+import {
+  AiOutlineLineChart,
+  AiOutlineClockCircle,
+  AiOutlineUnorderedList,
+} from "react-icons/ai";
 
 export const NavBar = () => {
   const isActive = true;
@@ -12,16 +17,18 @@ export const NavBar = () => {
     >
       <ul className="flex justify-between h-full items-center">
         <NavBarItem isActive key={"timer"}>
-          <IoTimeOutline className={isActive ? "!stroke-active" : ""} />
+          <AiOutlineClockCircle
+            className={isActive ? "!stroke-active !fill-active" : ""}
+          />
         </NavBarItem>
         <NavBarItem key={"stats"}>
-          <IoTimeOutline />
+          <AiOutlineLineChart />
         </NavBarItem>
         <NavBarItem key={"tags"}>
-          <IoTimeOutline />
+          <AiOutlineUnorderedList />
         </NavBarItem>
         <NavBarItem key={"settings"}>
-          <IoTimeOutline />
+          <HiOutlineAdjustmentsHorizontal />
         </NavBarItem>
       </ul>
     </nav>

@@ -16,6 +16,7 @@ import {
   IoPlayForwardOutline,
 } from "react-icons/io5";
 import { AnimatePresence, motion } from "framer-motion";
+import { Button } from "./Button";
 
 export const TimerController = () => {
   const { isPlaying, timerId, isStarted } = useSelector(selectTimer);
@@ -60,54 +61,34 @@ export const TimerController = () => {
       justify-center`}
     >
       {!isStarted && (
-        <motion.button
+        <Button
           onClick={handleStartTimer}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.2,
-            type: "spring",
-            damping: 30,
-            stiffness: 450,
-          }}
         >
           <IoPlayOutline />
-        </motion.button>
+        </Button>
       )}
 
       <AnimatePresence>
         {isStarted && (
           <>
-            <motion.button
-              className="absolute"
+            <Button
               onClick={handleTimer}
               initial={{ left: "50%", translateX: "-50%" }}
               animate={{ left: "15%", translateX: 0 }}
               exit={{ left: "-5%", opacity: 0 }}
-              transition={{
-                duration: 0.3,
-                type: "spring",
-                damping: 30,
-                stiffness: 450,
-              }}
             >
               {isPlaying ? <IoPauseOutline /> : <IoPlayOutline />}
-            </motion.button>
-            <motion.button
-              className="absolute"
+            </Button>
+            <Button
               onClick={handleResetTimer}
               initial={{ right: "50%", translateX: "50%" }}
               animate={{ right: "15%", translateX: 0 }}
               exit={{ right: "-5%", opacity: 0 }}
-              transition={{
-                duration: 0.3,
-                type: "spring",
-                damping: 30,
-                stiffness: 450,
-              }}
             >
               <IoPlayForwardOutline />
-            </motion.button>
+            </Button>
           </>
         )}
       </AnimatePresence>
