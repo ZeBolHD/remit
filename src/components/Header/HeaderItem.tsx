@@ -7,9 +7,9 @@ interface HeaderItemProps {
 export const HeaderItem = ({ heading }: HeaderItemProps) => {
   return (
     <motion.h1
-      initial={{ left: "-100%" }}
-      animate={{ left: "50%" }}
-      exit={{ left: "200%" }}
+      initial={{ left: "-100%", opacity: 0 }}
+      animate={{ left: "50%", opacity: 1 }}
+      exit={{ left: "200%", opacity: 0 }}
       transition={{
         duration: 0.3,
         type: "spring",
