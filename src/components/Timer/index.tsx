@@ -1,14 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { formatTime } from "../../helpers/formatTimer";
 import { selectTimer } from "../../redux/selectors";
 import { useAppDispatch } from "../../redux/store";
-import {
-  resetTimer,
-  setTimerId,
-  tickTimer,
-  toggleTimer,
-} from "../../redux/timer/slice";
+import { resetTimer } from "../../redux/timer/slice";
 import { TimerController } from "../TimerController";
 
 export const Timer = () => {
