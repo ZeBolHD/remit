@@ -1,13 +1,11 @@
-import { IconContext } from "react-icons";
 import { useSelector } from "react-redux";
-import { Header } from "./components/Header";
-import { NavBar } from "./components/NavBar";
-import { Settings } from "./components/Settings";
-import { Stats } from "./components/Stats";
-import { Tags } from "./components/Tags";
-import { Timer } from "./components/Timer";
 import { selectNavBar } from "./redux/selectors";
+
+import { Header, NavBar, Timer, Stats, Tags, Settings } from "./components";
+
 import { Tabs } from "./types";
+
+import { IconContext } from "react-icons";
 
 export const App = () => {
   const { activeTab } = useSelector(selectNavBar);
