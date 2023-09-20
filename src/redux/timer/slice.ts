@@ -27,6 +27,15 @@ const timerSlice = createSlice({
 
     tickTimer: (state) => {
       state.remainingTime -= 1;
+
+      if (state.remainingTime < 1) {
+        state.time = initialState.time;
+        state.remainingTime = initialState.remainingTime;
+        state.isPlaying = false;
+        state.isStarted = false;
+
+        clearInterval(state.timerId);
+      }
     },
 
     toggleTimer: (state) => {

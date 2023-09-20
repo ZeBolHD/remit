@@ -1,4 +1,4 @@
-export enum Tabs {
+export const enum Tabs {
   REMIT = "Remit",
   STATS = "Stats",
   TAGS = "Tags",

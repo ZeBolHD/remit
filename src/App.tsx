@@ -1,21 +1,23 @@
-import { useSelector } from "react-redux";
-import { selectNavBar } from "./redux/selectors";
-
 import { Header, NavBar, Timer, Stats, Tags, Settings } from "./components";
 
 import { Tabs } from "./types";
 
 import { IconContext } from "react-icons";
+import { useState } from "react";
 
 export const App = () => {
-  const { activeTab } = useSelector(selectNavBar);
+  const [currentTab, setCurrentTab] = useState<Tabs>(Tabs.REMIT);
+
+  const selectTab = (tab: Tabs) => {
+    setCurrentTab(tab);
+  };
 
   return (
     <main
       className="text-primary-dark  dark:text-primary w-full h-full flex flex-col overflow-hidden
       px-[45px] py-[30px] m-0 relative"
     >
-      <Header />
+      <Header currentTab={currentTab} />
       <IconContext.Provider
         value={{
           size: "35px",
@@ -23,12 +25,12 @@ export const App = () => {
         }}
       >
         <section className="h-full m-full">
-          {activeTab === Tabs.REMIT && <Timer />}
-          {activeTab === Tabs.STATS && <Stats />}
-          {activeTab === Tabs.TAGS && <Tags />}
-          {activeTab === Tabs.SETTINGS && <Settings />}
+          {currentTab === Tabs.REMIT && <Timer />}
+          {currentTab === Tabs.STATS && <Stats />}
+          {currentTab === Tabs.TAGS && <Tags />}
+          {currentTab === Tabs.SETTINGS && <Settings />}
         </section>
-        <NavBar />
+        <NavBar currentTab={currentTab} selectTab={selectTab} />
       </IconContext.Provider>
     </main>
   );
