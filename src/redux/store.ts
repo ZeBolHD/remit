@@ -5,7 +5,6 @@ import timerReducer from "./timer/slice";
 export const store = configureStore({
   reducer: {
     timer: timerReducer,
-    // navBar: navBarReducer,
   },
 });
 

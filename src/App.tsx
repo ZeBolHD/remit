@@ -24,7 +24,7 @@ export const App = () => {
           className: "dark:stroke-primary stroke-primary-dark",
         }}
       >
-        <section className="h-full m-full">
+        <section className="h-full m-full flex flex-col items-center justify-center">
           {currentTab === Tabs.REMIT && <Timer />}
           {currentTab === Tabs.STATS && <Stats />}
           {currentTab === Tabs.TAGS && <Tags />}
