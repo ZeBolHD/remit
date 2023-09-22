@@ -15,20 +15,18 @@ import storage from "redux-persist/lib/storage";
 
 import timerReducer from "./timer/slice";
 
-const persistConfig = {
-  key: "root",
-  version: 1,
+const timerPersistConfig = {
+  key: "timer",
   storage,
+  blacklist: ["isStarted", "isPlaying"],
 };
 
-const combinedReducers = combineReducers({
-  timer: timerReducer,
+const rootReducer = combineReducers({
+  timer: persistReducer(timerPersistConfig, timerReducer),
 });
 
-const persistedReducer = persistReducer(persistConfig, combinedReducers);
-
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

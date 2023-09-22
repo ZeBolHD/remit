@@ -26,7 +26,7 @@ export const SettingsItem = memo(
     const [value, setValue] = useState(initialValue);
 
     useEffect(() => {
-      handleChange(name, value);
+      handleChange(name, isTime ? value * 60 : value);
     }, [value]);
 
     return (

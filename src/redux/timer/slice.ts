@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { PURGE } from "redux-persist";
 
 interface timerState {
   time: number;
@@ -29,7 +30,6 @@ const timerSlice = createSlice({
       state.remainingTime -= 1;
 
       if (state.remainingTime < 1) {
-        state.time = initialState.time;
         state.remainingTime = initialState.remainingTime;
         state.isPlaying = false;
         state.isStarted = false;
@@ -47,20 +47,29 @@ const timerSlice = createSlice({
     },
 
     resetTimer(state) {
-      state.time = initialState.time;
-      state.remainingTime = initialState.remainingTime;
+      state.remainingTime = state.time;
       state.isPlaying = false;
       state.isStarted = false;
 
       clearInterval(state.timerId);
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase("startTimer", () => {});
+
+    setTime(state, action: PayloadAction<number>) {
+      state.time = action.payload;
+      state.remainingTime = action.payload;
+      state.isPlaying = false;
+      state.isStarted = false;
+    },
   },
 });
 
-export const { tickTimer, setTimerId, toggleTimer, resetTimer, startTimer } =
-  timerSlice.actions;
+export const {
+  tickTimer,
+  setTimerId,
+  toggleTimer,
+  resetTimer,
+  startTimer,
+  setTime,
+} = timerSlice.actions;
 
 export default timerSlice.reducer;
