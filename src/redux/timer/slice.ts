@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { convertMinutesToSeconds } from "../../helpers/convertMinutesToSeconds";
 import { getCurrentRoundType } from "../../helpers/getCurrentRoundType";
 import { CurrentRoundType } from "../../types";
 
@@ -17,7 +18,7 @@ interface TimerState {
 const initialState: TimerState = {
   time: 45,
   timerId: 0,
-  remainingTime: 45,
+  remainingTime: convertMinutesToSeconds(45),
   isPlaying: false,
   focusDuration: 45,
   breakDuration: 10,
@@ -34,14 +35,17 @@ const timerSlice = createSlice({
       state.isPlaying = true;
       state.currentRound = 1;
       state.currentRoundType = "focus";
+      state.time = state.focusDuration;
     },
 
     tickTimer: (state) => {
       state.remainingTime -= 1;
-      clearInterval(state.timerId);
 
       if (state.remainingTime < 1) {
         state.isPlaying = false;
+        clearInterval(state.timerId);
+
+        state.currentRound += 1;
 
         const currentRoundType = getCurrentRoundType(
           state.currentRound,
@@ -52,22 +56,22 @@ const timerSlice = createSlice({
           case "focus":
             state.currentRound += 1;
             state.currentRoundType = "focus";
-            state.time = state.focusDuration;
-            state.remainingTime = state.focusDuration;
+            state.time = convertMinutesToSeconds(state.focusDuration);
+            state.remainingTime = convertMinutesToSeconds(state.focusDuration);
             break;
 
           case "break":
             state.currentRound += 1;
             state.currentRoundType = "break";
-            state.time = state.breakDuration;
-            state.remainingTime = state.breakDuration;
+            state.time = convertMinutesToSeconds(state.breakDuration);
+            state.remainingTime = convertMinutesToSeconds(state.breakDuration);
             break;
 
           default:
             state.currentRound = state.rounds;
             state.currentRoundType = "initial";
-            state.time = state.focusDuration;
-            state.remainingTime = state.focusDuration;
+            state.time = convertMinutesToSeconds(state.focusDuration);
+            state.remainingTime = convertMinutesToSeconds(state.focusDuration);
             break;
         }
       }
@@ -81,13 +85,39 @@ const timerSlice = createSlice({
       state.timerId = action.payload;
     },
 
-    resetTimer(state) {
-      state.remainingTime = state.time;
-      state.isPlaying = false;
-      state.currentRound = 0;
-      state.currentRoundType = "initial";
+    setComplete(state) {
+      state.currentRound += 0.5;
 
+      state.isPlaying = false;
       clearInterval(state.timerId);
+
+      const currentRoundType = getCurrentRoundType(
+        state.currentRound,
+        state.rounds
+      );
+
+      console.log(currentRoundType, state.currentRound);
+
+      switch (currentRoundType) {
+        case "focus":
+          state.currentRoundType = "focus";
+          state.time = convertMinutesToSeconds(state.focusDuration);
+          state.remainingTime = convertMinutesToSeconds(state.focusDuration);
+          break;
+
+        case "break":
+          state.currentRoundType = "break";
+          state.time = convertMinutesToSeconds(state.breakDuration);
+          state.remainingTime = convertMinutesToSeconds(state.breakDuration);
+          break;
+
+        default:
+          state.currentRound = 0;
+          state.currentRoundType = "initial";
+          state.time = convertMinutesToSeconds(state.focusDuration);
+          state.remainingTime = convertMinutesToSeconds(state.focusDuration);
+          break;
+      }
     },
 
     setTime(state, action: PayloadAction<number>) {
@@ -104,7 +134,7 @@ export const {
   tickTimer,
   setTimerId,
   toggleTimer,
-  resetTimer,
+  setComplete,
   startTimer,
   setTime,
 } = timerSlice.actions;

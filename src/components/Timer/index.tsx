@@ -1,21 +1,12 @@
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { formatTime } from "../../helpers/formatTimer";
 import { selectTimer } from "../../redux/selectors";
-import { useAppDispatch } from "../../redux/store";
-import { resetTimer } from "../../redux/timer/slice";
+
+import { formatTime } from "../../helpers/formatTimer";
+
 import { TimerController } from "../TimerController";
 
 export const Timer = () => {
-  const { remainingTime, timerId } = useSelector(selectTimer);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (remainingTime === 0) {
-      clearInterval(timerId);
-      dispatch(resetTimer());
-    }
-  });
+  const { remainingTime } = useSelector(selectTimer);
 
   return (
     <div className="text-center h-full flex flex-col items-center w-full ">

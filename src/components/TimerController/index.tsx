@@ -1,22 +1,23 @@
-import { IconContext } from "react-icons";
 import { useDispatch, useSelector } from "react-redux";
 
 import { selectTimer } from "../../redux/selectors";
+
 import {
   setTimerId,
   startTimer,
   tickTimer,
   toggleTimer,
-  resetTimer,
+  setComplete,
 } from "../../redux/timer/slice";
+
+import { AnimatePresence, motion } from "framer-motion";
+import { Button } from "./Button";
 
 import {
   IoPlayOutline,
   IoPauseOutline,
   IoPlayForwardOutline,
 } from "react-icons/io5";
-import { AnimatePresence, motion } from "framer-motion";
-import { Button } from "./Button";
 
 export const TimerController = () => {
   const { isPlaying, timerId, currentRoundType } = useSelector(selectTimer);
@@ -51,7 +52,7 @@ export const TimerController = () => {
   };
 
   const handleResetTimer = () => {
-    dispatch(resetTimer());
+    dispatch(setComplete());
   };
 
   return (
