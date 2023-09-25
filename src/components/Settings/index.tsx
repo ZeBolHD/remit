@@ -1,6 +1,7 @@
 import debounce from "lodash.debounce";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectTimer } from "../../redux/selectors";
 import { setTime } from "../../redux/timer/slice";
 
 import { SettingsItem } from "./SettingsItem";
@@ -11,22 +12,24 @@ export interface SettingsProps {
   rounds: number;
 }
 
-const initialSettings: SettingsProps = {
-  focusDuration: 30,
-  breakDuration: 10,
-  rounds: 2,
-};
-
 export const Settings = () => {
-  const [settings, setSettings] = useState<SettingsProps>(initialSettings);
+  const { focusDuration, breakDuration, rounds } = useSelector(selectTimer);
+
+  const [settings, setSettings] = useState<SettingsProps>({
+    focusDuration,
+    breakDuration,
+    rounds,
+  });
 
   const dispatch = useDispatch();
 
   const updateSettings = debounce((key: keyof SettingsProps, value: number) => {
     setSettings((prev) => ({ ...prev, [key]: value }));
+
     if (key === "focusDuration") {
       dispatch(setTime(value));
     }
+
     console.log("settings changed");
   }, 300);
 
