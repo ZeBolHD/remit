@@ -1,20 +1,29 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { PURGE } from "redux-persist";
+import { getCurrentRoundType } from "../../helpers/getCurrentRoundType";
+import { CurrentRoundType } from "../../types";
 
-interface timerState {
+interface TimerState {
   time: number;
   timerId: number;
   remainingTime: number;
-  isStarted: boolean;
   isPlaying: boolean;
+  focusDuration: number;
+  breakDuration: number;
+  rounds: number;
+  currentRound: number;
+  currentRoundType: CurrentRoundType;
 }
 
-const initialState: timerState = {
-  time: 10,
+const initialState: TimerState = {
+  time: 45,
   timerId: 0,
-  remainingTime: 10,
+  remainingTime: 45,
   isPlaying: false,
-  isStarted: false,
+  focusDuration: 45,
+  breakDuration: 10,
+  rounds: 3,
+  currentRound: 0,
+  currentRoundType: "initial",
 };
 
 const timerSlice = createSlice({
@@ -22,19 +31,45 @@ const timerSlice = createSlice({
   name: "timer",
   reducers: {
     startTimer: (state) => {
-      state.isStarted = true;
       state.isPlaying = true;
+      state.currentRound = 1;
+      state.currentRoundType = "focus";
     },
 
     tickTimer: (state) => {
       state.remainingTime -= 1;
+      clearInterval(state.timerId);
 
       if (state.remainingTime < 1) {
-        state.remainingTime = initialState.remainingTime;
         state.isPlaying = false;
-        state.isStarted = false;
 
-        clearInterval(state.timerId);
+        const currentRoundType = getCurrentRoundType(
+          state.currentRound,
+          state.rounds
+        );
+
+        switch (currentRoundType) {
+          case "focus":
+            state.currentRound += 1;
+            state.currentRoundType = "focus";
+            state.time = state.focusDuration;
+            state.remainingTime = state.focusDuration;
+            break;
+
+          case "break":
+            state.currentRound += 1;
+            state.currentRoundType = "break";
+            state.time = state.breakDuration;
+            state.remainingTime = state.breakDuration;
+            break;
+
+          default:
+            state.currentRound = state.rounds;
+            state.currentRoundType = "initial";
+            state.time = state.focusDuration;
+            state.remainingTime = state.focusDuration;
+            break;
+        }
       }
     },
 
@@ -49,7 +84,8 @@ const timerSlice = createSlice({
     resetTimer(state) {
       state.remainingTime = state.time;
       state.isPlaying = false;
-      state.isStarted = false;
+      state.currentRound = 0;
+      state.currentRoundType = "initial";
 
       clearInterval(state.timerId);
     },
@@ -58,7 +94,8 @@ const timerSlice = createSlice({
       state.time = action.payload;
       state.remainingTime = action.payload;
       state.isPlaying = false;
-      state.isStarted = false;
+      state.currentRound = 0;
+      state.currentRoundType = "initial";
     },
   },
 });

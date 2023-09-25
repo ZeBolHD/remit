@@ -19,7 +19,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "./Button";
 
 export const TimerController = () => {
-  const { isPlaying, timerId, isStarted } = useSelector(selectTimer);
+  const { isPlaying, timerId, currentRoundType } = useSelector(selectTimer);
 
   const dispatch = useDispatch();
 
@@ -39,7 +39,7 @@ export const TimerController = () => {
   };
 
   const handleStartTimer = () => {
-    if (!isStarted) {
+    if (currentRoundType === "initial") {
       dispatch(startTimer());
 
       const timerId = setInterval(() => {
@@ -60,7 +60,7 @@ export const TimerController = () => {
       rounded-large mb-0 mt-auto dark:border-primary border-primary-dark
       justify-center`}
     >
-      {!isStarted && (
+      {currentRoundType === "initial" && (
         <Button
           onClick={handleStartTimer}
           initial={{ opacity: 0, y: 10 }}
@@ -71,7 +71,7 @@ export const TimerController = () => {
       )}
 
       <AnimatePresence>
-        {isStarted && (
+        {currentRoundType !== "initial" && (
           <>
             <Button
               onClick={handleTimer}
@@ -81,6 +81,7 @@ export const TimerController = () => {
             >
               {isPlaying ? <IoPauseOutline /> : <IoPlayOutline />}
             </Button>
+
             <Button
               onClick={handleResetTimer}
               initial={{ right: "50%", translateX: "50%" }}

@@ -4,3 +4,5 @@ export const enum Tabs {
   TAGS = "Tags",
   SETTINGS = "Settings",
 }
+
+export type CurrentRoundType = "initial" | "focus" | "break";

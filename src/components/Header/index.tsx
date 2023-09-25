@@ -7,7 +7,7 @@ import { selectTimer } from "../../redux/selectors";
 import { Tabs } from "../../types";
 
 export const Header = ({ currentTab }: { currentTab: Tabs }) => {
-  const { isStarted } = useSelector(selectTimer);
+  const { currentRoundType } = useSelector(selectTimer);
 
   return (
     <header className="text-center overflow-hidden h-[50px] w-full">
@@ -15,11 +15,15 @@ export const Header = ({ currentTab }: { currentTab: Tabs }) => {
         {currentTab === Tabs.REMIT && (
           <>
             <AnimatePresence>
-              {isStarted && <HeaderItem heading="Stay Focused" />}
+              {currentRoundType === "focus" && (
+                <HeaderItem heading="Stay Focused" />
+              )}
             </AnimatePresence>
 
             <AnimatePresence>
-              {!isStarted && <HeaderItem heading={Tabs.REMIT} />}
+              {currentRoundType === "initial" && (
+                <HeaderItem heading={Tabs.REMIT} />
+              )}
             </AnimatePresence>
           </>
         )}
