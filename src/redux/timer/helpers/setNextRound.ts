@@ -1,30 +1,18 @@
+import { CurrentRoundType } from "../../../types";
 import { TimerState } from "../types";
 import { convertMinutesToSeconds } from "./convertMinutesToSeconds";
 import { getCurrentRoundType } from "./getCurrentRoundType";
 import { resetTimer } from "./resetTimer";
 
-export const setNextRound = (state: TimerState) => {
-  state.currentRound += 0.5;
-
-  if (state.currentRound > state.rounds) {
-    resetTimer(state);
-  }
-
-  const currentRoundType = getCurrentRoundType(
-    state.currentRound,
-    state.rounds
-  );
-
-  switch (currentRoundType) {
+const setTimerStateByType = (state: TimerState, type: CurrentRoundType) => {
+  switch (type) {
     case "focus":
-      state.currentRound += 1;
       state.currentRoundType = "focus";
       state.time = convertMinutesToSeconds(state.focusDuration);
 
       break;
 
     case "break":
-      state.currentRound += 1;
       state.currentRoundType = "break";
       state.time = convertMinutesToSeconds(state.breakDuration);
 
@@ -37,4 +25,22 @@ export const setNextRound = (state: TimerState) => {
 
       break;
   }
+};
+
+export const setNextRound = (state: TimerState) => {
+  state.currentRound += 0.5;
+
+  console.log(state.currentRound);
+
+  if (state.currentRound >= state.rounds) {
+    resetTimer(state);
+    return;
+  }
+
+  const currentRoundType = getCurrentRoundType(
+    state.currentRound,
+    state.rounds
+  );
+
+  setTimerStateByType(state, currentRoundType);
 };

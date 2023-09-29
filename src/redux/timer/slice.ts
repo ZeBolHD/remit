@@ -32,7 +32,6 @@ const timerSlice = createSlice({
 
       if (state.time < 1) {
         state.isPlaying = false;
-        clearInterval(state.timerId);
         setNextRound(state);
       }
     },
