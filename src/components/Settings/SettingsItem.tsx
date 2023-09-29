@@ -1,28 +1,26 @@
 import { useEffect, useState } from "react";
-import { convertMinutesToSeconds } from "../../helpers/convertMinutesToSeconds";
 
-import { SettingsProps } from "./";
+import { convertMinutesToSeconds } from "../../redux/timer/helpers/convertMinutesToSeconds";
+import { TimerSettings } from "../../redux/timer/types";
 
 interface SettingsItemProps {
   initialValue: number;
   label: string;
-  name: keyof SettingsProps;
+  name: keyof TimerSettings;
   step: number;
   min: number;
   max: number;
   isTime?: boolean;
-  handleChange: (key: keyof SettingsProps, value: number) => void;
+  handleChange: (key: keyof TimerSettings, value: number) => void;
 }
 
 export const SettingsItem = ({
   initialValue,
   name,
   handleChange,
-  label,
-  step,
-  max,
-  min,
   isTime = false,
+  label,
+  ...inputProps
 }: SettingsItemProps) => {
   const [value, setValue] = useState(initialValue);
 
@@ -40,11 +38,9 @@ export const SettingsItem = ({
         className="range accent-primary-dark dark:accent-primary h-[13px]"
         type="range"
         value={value}
-        step={step}
-        min={min}
-        max={max}
         name={label}
         onChange={(e) => setValue(+e.target.value)}
+        {...inputProps}
       />
     </li>
   );

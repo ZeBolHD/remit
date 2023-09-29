@@ -1,21 +1,18 @@
-import debounce from "lodash.debounce";
 import { useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
-import { selectTimer } from "../../redux/selectors";
-import { setTime } from "../../redux/timer/slice";
 
 import { SettingsItem } from "./SettingsItem";
+import { TimerSettings } from "../../redux/timer/types";
+import { selectTimer } from "../../redux/selectors";
+import { setTimerSettings } from "../../redux/timer/slice";
 
-export interface SettingsProps {
-  focusDuration: number;
-  breakDuration: number;
-  rounds: number;
-}
+import debounce from "lodash.debounce";
 
 export const Settings = () => {
   const { focusDuration, breakDuration, rounds } = useSelector(selectTimer);
 
-  const [settings, setSettings] = useState<SettingsProps>({
+  const [settings, setSettings] = useState<TimerSettings>({
     focusDuration,
     breakDuration,
     rounds,
@@ -23,12 +20,10 @@ export const Settings = () => {
 
   const dispatch = useDispatch();
 
-  const updateSettings = debounce((key: keyof SettingsProps, value: number) => {
+  const updateSettings = debounce((key: keyof TimerSettings, value: number) => {
     setSettings((prev) => ({ ...prev, [key]: value }));
 
-    if (key === "focusDuration") {
-      dispatch(setTime(value));
-    }
+    dispatch(setTimerSettings(settings));
 
     console.log("settings changed");
   }, 300);
@@ -55,8 +50,8 @@ export const Settings = () => {
           name="breakDuration"
           handleChange={updateSettings}
           label="Break"
-          min={10}
-          max={60}
+          min={5}
+          max={30}
           step={5}
           isTime
           key="Break"

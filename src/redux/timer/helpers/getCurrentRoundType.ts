@@ -1,4 +1,4 @@
-import { CurrentRoundType } from "../types";
+import { CurrentRoundType } from "../../../types";
 
 export const getCurrentRoundType = (
   currentRound: number,
@@ -8,7 +8,7 @@ export const getCurrentRoundType = (
     return "initial";
   }
 
-  if (currentRound % 2 === 1) {
+  if ((currentRound * 10) % 10 === 5) {
     return "focus";
   }
 
