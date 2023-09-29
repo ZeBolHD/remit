@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import { TimerSettings } from "../../redux/timer/types";
 
 interface SettingsItemProps {

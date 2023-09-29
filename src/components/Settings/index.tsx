@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -12,21 +12,16 @@ import debounce from "lodash.debounce";
 export const Settings = () => {
   const { focusDuration, breakDuration, rounds } = useSelector(selectTimer);
 
-  const [settings, setSettings] = useState<TimerSettings>({
-    focusDuration,
-    breakDuration,
-    rounds,
-  });
-
   const dispatch = useDispatch();
 
-  const updateSettings = debounce((key: keyof TimerSettings, value: number) => {
-    setSettings((prev) => ({ ...prev, [key]: value }));
+  const updateSettings = useCallback(
+    debounce((key: keyof TimerSettings, value: number) => {
+      dispatch(setTimerSettings({ key, value }));
 
-    dispatch(setTimerSettings(settings));
-
-    console.log("settings changed");
-  }, 300);
+      console.log("settings changed");
+    }, 300),
+    []
+  );
 
   return (
     <div
@@ -35,7 +30,7 @@ export const Settings = () => {
     >
       <ul className="flex flex-col justify-between h-full">
         <SettingsItem
-          initialValue={settings.focusDuration}
+          initialValue={focusDuration}
           name="focusDuration"
           handleChange={updateSettings}
           label="Focus"
@@ -43,10 +38,10 @@ export const Settings = () => {
           max={60}
           step={5}
           isTime
-          key="Focus"
+          key="focus"
         />
         <SettingsItem
-          initialValue={settings.breakDuration}
+          initialValue={breakDuration}
           name="breakDuration"
           handleChange={updateSettings}
           label="Break"
@@ -54,17 +49,17 @@ export const Settings = () => {
           max={30}
           step={5}
           isTime
-          key="Break"
+          key="break"
         />
         <SettingsItem
-          initialValue={settings.rounds}
+          initialValue={rounds}
           name="rounds"
           handleChange={updateSettings}
           label="Rounds"
           min={1}
           max={4}
           step={1}
-          key="Rounds"
+          key="rounds"
         />
       </ul>
     </div>

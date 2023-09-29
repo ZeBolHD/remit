@@ -48,10 +48,11 @@ const timerSlice = createSlice({
       setNextRound(state);
     },
 
-    setTimerSettings(state, action: PayloadAction<TimerSettings>) {
-      state.focusDuration = action.payload.focusDuration;
-      state.breakDuration = action.payload.breakDuration;
-      state.rounds = action.payload.rounds;
+    setTimerSettings(
+      state,
+      action: PayloadAction<{ key: keyof TimerSettings; value: number }>
+    ) {
+      state[action.payload.key] = action.payload.value;
 
       resetTimer(state);
     },
