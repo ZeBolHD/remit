@@ -21,6 +21,12 @@ export const Header = ({ currentTab }: { currentTab: Tabs }) => {
             </AnimatePresence>
 
             <AnimatePresence>
+              {currentRoundType === "break" && (
+                <HeaderItem heading="Break time" />
+              )}
+            </AnimatePresence>
+
+            <AnimatePresence>
               {currentRoundType === "initial" && (
                 <HeaderItem heading={Tabs.REMIT} />
               )}
