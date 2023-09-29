@@ -1,9 +1,14 @@
 import { TimerState } from "../types";
 import { convertMinutesToSeconds } from "./convertMinutesToSeconds";
 import { getCurrentRoundType } from "./getCurrentRoundType";
+import { resetTimer } from "./resetTimer";
 
 export const setNextRound = (state: TimerState) => {
   state.currentRound += 0.5;
+
+  if (state.currentRound > state.rounds) {
+    resetTimer(state);
+  }
 
   const currentRoundType = getCurrentRoundType(
     state.currentRound,

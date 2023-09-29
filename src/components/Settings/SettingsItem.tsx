@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-import { convertMinutesToSeconds } from "../../redux/timer/helpers/convertMinutesToSeconds";
 import { TimerSettings } from "../../redux/timer/types";
 
 interface SettingsItemProps {
@@ -25,7 +24,7 @@ export const SettingsItem = ({
   const [value, setValue] = useState(initialValue);
 
   useEffect(() => {
-    handleChange(name, isTime ? convertMinutesToSeconds(value) : value);
+    handleChange(name, isTime ? value : value);
   }, [value]);
 
   return (
