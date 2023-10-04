@@ -25,7 +25,7 @@ export const SettingsItem = ({
   const mountedRef = useRef(false);
 
   useEffect(() => {
-    if (!mountedRef.current) {
+    if (mountedRef.current) {
       handleChange(name, isTime ? value : value);
     }
 
