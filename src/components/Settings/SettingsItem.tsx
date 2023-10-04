@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TimerSettings } from "../../redux/timer/types";
 
 interface SettingsItemProps {
@@ -22,8 +22,14 @@ export const SettingsItem = ({
 }: SettingsItemProps) => {
   const [value, setValue] = useState(initialValue);
 
+  const mountedRef = useRef(false);
+
   useEffect(() => {
-    handleChange(name, isTime ? value : value);
+    if (!mountedRef.current) {
+      handleChange(name, isTime ? value : value);
+    }
+
+    mountedRef.current = true;
   }, [value]);
 
   return (
@@ -36,6 +42,7 @@ export const SettingsItem = ({
         className="range accent-primary-dark dark:accent-primary h-[13px]"
         type="range"
         value={value}
+        id={label}
         name={label}
         onChange={(e) => setValue(+e.target.value)}
         {...inputProps}
