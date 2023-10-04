@@ -12,7 +12,7 @@ export const Header = ({ currentTab }: { currentTab: Tabs }) => {
   return (
     <header className="text-center overflow-hidden h-[50px] w-full">
       <AnimatePresence>
-        {currentTab === Tabs.REMIT && (
+        {currentTab === Tabs.TIMER && (
           <>
             <AnimatePresence>
               {currentRoundType === "focus" && (
@@ -27,9 +27,7 @@ export const Header = ({ currentTab }: { currentTab: Tabs }) => {
             </AnimatePresence>
 
             <AnimatePresence>
-              {currentRoundType === "initial" && (
-                <HeaderItem heading={Tabs.REMIT} />
-              )}
+              {currentRoundType === "initial" && <HeaderItem heading="Remit" />}
             </AnimatePresence>
           </>
         )}

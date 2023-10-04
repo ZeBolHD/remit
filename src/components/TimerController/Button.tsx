@@ -10,18 +10,14 @@ interface ButtonProps
 
 export const Button = ({
   children,
-  initial,
-  animate,
-  exit,
   onClick,
+  ...animationProps
 }: ButtonProps) => {
   return (
     <motion.button
       className="absolute"
       onClick={onClick}
-      initial={initial}
-      animate={animate}
-      exit={exit}
+      {...animationProps}
       transition={{
         duration: 0.3,
         type: "spring",

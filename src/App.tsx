@@ -3,10 +3,17 @@ import { Header, NavBar, Timer, Stats, Tags, Settings } from "./components";
 import { Tabs } from "./types";
 
 import { IconContext } from "react-icons";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
+
+const TabsComponents: Record<Tabs, ReactNode> = {
+  Timer: <Timer />,
+  Stats: <Stats />,
+  Tags: <Tags />,
+  Settings: <Settings />,
+};
 
 export const App = () => {
-  const [currentTab, setCurrentTab] = useState<Tabs>(Tabs.REMIT);
+  const [currentTab, setCurrentTab] = useState<Tabs>(Tabs.TIMER);
 
   const selectTab = (tab: Tabs) => {
     setCurrentTab(tab);
@@ -25,10 +32,7 @@ export const App = () => {
         }}
       >
         <section className="h-full m-full flex flex-col items-center justify-center">
-          {currentTab === Tabs.REMIT && <Timer />}
-          {currentTab === Tabs.STATS && <Stats />}
-          {currentTab === Tabs.TAGS && <Tags />}
-          {currentTab === Tabs.SETTINGS && <Settings />}
+          {TabsComponents[currentTab]}
         </section>
         <NavBar currentTab={currentTab} selectTab={selectTab} />
       </IconContext.Provider>

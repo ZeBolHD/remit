@@ -1,5 +1,5 @@
 export const enum Tabs {
-  REMIT = "Remit",
+  TIMER = "Timer",
   STATS = "Stats",
   TAGS = "Tags",
   SETTINGS = "Settings",
