@@ -1,46 +1,46 @@
+import { ReactNode } from "react";
 import { AnimatePresence } from "framer-motion";
 
 import { HeaderItem } from "./HeaderItem";
 
 import { useSelector } from "react-redux";
 import { selectTimer } from "../../redux/selectors";
-import { Tabs } from "../../types";
+import { CurrentRoundType, Tabs } from "../../types";
+
+const headerTabsItems: Record<Exclude<Tabs, Tabs.TIMER>, ReactNode> = {
+  [Tabs.STATS]: <HeaderItem heading={Tabs.STATS} key={Tabs.STATS} />,
+  [Tabs.TAGS]: <HeaderItem heading={Tabs.TAGS} key={Tabs.TAGS} />,
+  [Tabs.SETTINGS]: <HeaderItem heading={Tabs.SETTINGS} key={Tabs.SETTINGS} />,
+};
+
+const headerTimerItems: Record<CurrentRoundType, ReactNode> = {
+  initial: <HeaderItem heading="Remit" key="initial" />,
+  focus: <HeaderItem heading="Stay focused" key="focus" />,
+  break: <HeaderItem heading="Break time" key="break" />,
+};
+
+const getCurrentTimerHeaderItem = (
+  currentTab: Tabs,
+  currentRoundType: CurrentRoundType
+): ReactNode => {
+  if (currentTab === Tabs.TIMER) {
+    return headerTimerItems[currentRoundType];
+  }
+
+  return headerTabsItems[currentTab];
+};
 
 export const Header = ({ currentTab }: { currentTab: Tabs }) => {
   const { currentRoundType } = useSelector(selectTimer);
 
+  const currentTimerHeaderItem = getCurrentTimerHeaderItem(
+    currentTab,
+    currentRoundType
+  );
+
   return (
     <header className="text-center overflow-hidden h-[50px] w-full">
-      <AnimatePresence>
-        {currentTab === Tabs.TIMER && (
-          <>
-            <AnimatePresence>
-              {currentRoundType === "focus" && (
-                <HeaderItem heading="Stay Focused" />
-              )}
-            </AnimatePresence>
-
-            <AnimatePresence>
-              {currentRoundType === "break" && (
-                <HeaderItem heading="Break time" />
-              )}
-            </AnimatePresence>
-
-            <AnimatePresence>
-              {currentRoundType === "initial" && <HeaderItem heading="Remit" />}
-            </AnimatePresence>
-          </>
-        )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {currentTab === Tabs.STATS && <HeaderItem heading={Tabs.STATS} />}
-      </AnimatePresence>
-      <AnimatePresence>
-        {currentTab === Tabs.TAGS && <HeaderItem heading={Tabs.TAGS} />}
-      </AnimatePresence>
-      <AnimatePresence>
-        {currentTab === Tabs.SETTINGS && <HeaderItem heading={Tabs.SETTINGS} />}
-      </AnimatePresence>
+      <AnimatePresence>{currentTimerHeaderItem}</AnimatePresence>
     </header>
   );
 };

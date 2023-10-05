@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { convertMinutesToSeconds } from "./helpers/convertMinutesToSeconds";
-import { getCurrentRoundType } from "./helpers/getCurrentRoundType";
 import { resetTimer } from "./helpers/resetTimer";
 import { setNextRound } from "./helpers/setNextRound";
 import { TimerSettings, TimerState } from "./types";
