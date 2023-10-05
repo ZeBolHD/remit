@@ -39,7 +39,7 @@ export const Header = ({ currentTab }: { currentTab: Tabs }) => {
   );
 
   return (
-    <header className="text-center overflow-hidden h-[50px] w-full">
+    <header className="text-center overflow-hidden min-h-[60px] w-full">
       <AnimatePresence>{currentTimerHeaderItem}</AnimatePresence>
     </header>
   );
