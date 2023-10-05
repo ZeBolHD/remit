@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-type Tag = { name: string; completedRounds: number };
+import { Tag } from "../../types";
 
 interface TagsState {
   tags: Tag[];

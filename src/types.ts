@@ -6,3 +6,5 @@ export const enum Tabs {
 }
 
 export type CurrentRoundType = "initial" | "focus" | "break";
+
+export type Tag = { name: string; completedRounds: number };
