@@ -13,6 +13,7 @@ import {
 import storage from "redux-persist/lib/storage";
 
 import timerReducer from "./timer/slice";
+import tagsReducer from "./tags/slice";
 
 const timerPersistConfig = {
   key: "timer",
@@ -20,8 +21,14 @@ const timerPersistConfig = {
   blacklist: ["isStarted", "isPlaying"],
 };
 
+const tagsPersistConfig = {
+  key: "tags",
+  storage,
+};
+
 const rootReducer = combineReducers({
   timer: persistReducer(timerPersistConfig, timerReducer),
+  tags: persistReducer(tagsPersistConfig, tagsReducer),
 });
 
 export const store = configureStore({
