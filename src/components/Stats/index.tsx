@@ -1,5 +1,6 @@
 import moment from "moment";
 import { useState } from "react";
+import { Diagram } from "./Diagram";
 import { WeekSelector } from "./WeekSelector";
 
 export const Stats = () => {
@@ -21,6 +22,8 @@ export const Stats = () => {
         setNextWeek={setNextWeek}
         setPreviousWeek={setPreviousWeek}
       />
+
+      <Diagram />
     </div>
   );
 };
