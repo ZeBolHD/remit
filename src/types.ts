@@ -1,6 +1,6 @@
 export const enum Tabs {
   TIMER = "Timer",
-  STATS = "Stats",
+  STATS = "Statistics",
   TAGS = "Tags",
   SETTINGS = "Settings",
 }

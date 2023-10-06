@@ -7,7 +7,7 @@ import { ReactNode, useState } from "react";
 
 const TabsComponents: Record<Tabs, ReactNode> = {
   Timer: <Timer />,
-  Stats: <Stats />,
+  Statistics: <Stats />,
   Tags: <Tags />,
   Settings: <Settings />,
 };
