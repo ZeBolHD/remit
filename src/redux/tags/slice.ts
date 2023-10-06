@@ -24,9 +24,22 @@ const tagsSlice = createSlice({
         ...state.tags,
       ];
     },
+    addCompletedRound(state, action: PayloadAction<Tag>) {
+      state.tags = state.tags.map((tag) => {
+        if (tag.name === action.payload.name) {
+          return { ...tag, completedRounds: tag.completedRounds + 1 };
+        }
+
+        return tag;
+      });
+    },
+
+    removeTag(state, action: PayloadAction<Tag>) {
+      state.tags = state.tags.filter((tag) => tag.name !== action.payload.name);
+    },
   },
 });
 
-export const { addTag } = tagsSlice.actions;
+export const { addTag, addCompletedRound, removeTag } = tagsSlice.actions;
 
 export default tagsSlice.reducer;
