@@ -5,8 +5,13 @@ interface TagsState {
   tags: Tag[];
 }
 
+const initialTag: Tag = {
+  name: "My New Tag",
+  completedRounds: 0,
+};
+
 const initialState: TagsState = {
-  tags: [],
+  tags: [initialTag],
 };
 
 const tagsSlice = createSlice({
