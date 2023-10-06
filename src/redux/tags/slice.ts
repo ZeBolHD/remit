@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Tag } from "../../types";
 
 interface TagsState {
@@ -17,7 +17,16 @@ const initialState: TagsState = {
 const tagsSlice = createSlice({
   name: "tags",
   initialState,
-  reducers: {},
+  reducers: {
+    addTag(state, action: PayloadAction<string>) {
+      state.tags = [
+        { name: action.payload, completedRounds: 0 },
+        ...state.tags,
+      ];
+    },
+  },
 });
+
+export const { addTag } = tagsSlice.actions;
 
 export default tagsSlice.reducer;

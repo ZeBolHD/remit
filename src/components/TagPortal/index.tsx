@@ -1,20 +1,19 @@
-import { motion } from "framer-motion";
+import { motion, useDeprecatedAnimatedState } from "framer-motion";
 import { useState } from "react";
 import { createPortal } from "react-dom";
+import { useAppDispatch } from "../../redux/store";
+import { addTag } from "../../redux/tags/slice";
 import { Tag } from "../../types";
 
 interface TagPortalProps {
   isOpen: boolean;
-  onClickAdd: (tag: Tag) => void;
   closeForm: () => void;
 }
 
-export const TagPortal = ({
-  isOpen,
-  onClickAdd,
-  closeForm,
-}: TagPortalProps) => {
+export const TagPortal = ({ isOpen, closeForm }: TagPortalProps) => {
   const [inputValue, setInputValue] = useState("New Tag");
+
+  const dispatch = useAppDispatch();
 
   const onChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -22,7 +21,8 @@ export const TagPortal = ({
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onClickAdd({ name: inputValue, completedRounds: 0 });
+    dispatch(addTag(inputValue));
+    closeForm();
   };
 
   const portal = document.getElementById("portal");

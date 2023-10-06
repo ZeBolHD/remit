@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
+import { useSelector } from "react-redux";
+import { selectTags } from "../../redux/selectors";
+import { useAppDispatch } from "../../redux/store";
 import { Tag } from "../../types";
 import { TagPortal } from "../TagPortal";
 import { TagsListItem } from "./TagsListItem";
@@ -11,13 +14,9 @@ const testTags = [
 ];
 
 export const Tags = () => {
-  const [tags, setTags] = useState<Tag[]>(testTags);
   const [isPortalOpen, setIsPortalOpen] = useState(false);
 
-  const onClickAdd = (tag: Tag) => {
-    setIsPortalOpen(false);
-    setTags([tag, ...tags]);
-  };
+  const { tags } = useSelector(selectTags);
 
   const closeForm = () => {
     setIsPortalOpen(false);
@@ -35,11 +34,7 @@ export const Tags = () => {
         <CiCirclePlus size={70} />
       </button>
       {isPortalOpen && (
-        <TagPortal
-          isOpen={isPortalOpen}
-          onClickAdd={onClickAdd}
-          closeForm={closeForm}
-        />
+        <TagPortal isOpen={isPortalOpen} closeForm={closeForm} />
       )}
       <div className="mt-[50px] py-[10px] max-h-full overflow-y-hidden">
         <motion.ul layoutScroll className="h-full overflow-y-auto no-scrollbar">
