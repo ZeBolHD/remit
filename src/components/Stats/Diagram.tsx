@@ -1,5 +1,7 @@
 import { DiagramItem } from "./DiagramItem";
 
+const daysOfWeek = ["M", "T", "W", "T", "F", "S", "S"];
+
 export const Diagram = () => {
   const maxRounds = 10;
 
@@ -9,6 +11,7 @@ export const Diagram = () => {
         {Array.from({ length: 7 }).map((_, i) => (
           <DiagramItem
             key={i}
+            dayOfWeek={daysOfWeek[i]}
             completedRounds={Math.random() * 10}
             max={maxRounds}
           />
