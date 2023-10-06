@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { Tag } from "../../types";
@@ -40,12 +41,12 @@ export const Tags = () => {
           closeForm={closeForm}
         />
       )}
-      <div className="mt-[60px] max-h-full overflow-y-hidden overflow-x-visible">
-        <ul className="h-full overflow-y-scroll">
+      <div className="mt-[50px] py-[10px] max-h-full overflow-y-hidden">
+        <motion.ul layoutScroll className="h-full overflow-y-auto no-scrollbar">
           {tags.map((tag) => (
             <TagsListItem tag={tag} key={tag.name} />
           ))}
-        </ul>
+        </motion.ul>
       </div>
     </div>
   );

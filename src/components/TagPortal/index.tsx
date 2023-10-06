@@ -35,13 +35,11 @@ export const TagPortal = ({
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       className="absolute w-full h-full backdrop-blur-sm z-50 flex items-center justify-center px-[45px]"
       onClick={closeForm}
     >
-      <motion.form
-        // initial={{ opacity: 0, scale: 0.5 }}
-        // animate={{ opacity: 1, scale: 1 }}
-        // exit={{ opacity: 0, scale: 0.5 }}
+      <form
         className="w-full h-[200px] flex flex-col py-[15px] px-[25px] justify-between
         text-center text-[20px] text-primary-dark dark:text-primary
         bg-primary dark:bg-primary-dark border-[2px] border-primary-dark dark:border-primary rounded-medium z-[50]"
@@ -68,7 +66,7 @@ export const TagPortal = ({
         >
           Done
         </button>
-      </motion.form>
+      </form>
     </motion.div>,
     portal!
   );
