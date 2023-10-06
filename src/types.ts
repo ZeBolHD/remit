@@ -8,3 +8,5 @@ export const enum Tabs {
 export type CurrentRoundType = "initial" | "focus" | "break";
 
 export type Tag = { name: string; completedRounds: number };
+
+export type Statistic = { date: string; completedRounds: number };

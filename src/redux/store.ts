@@ -14,6 +14,7 @@ import storage from "redux-persist/lib/storage";
 
 import timerReducer from "./timer/slice";
 import tagsReducer from "./tags/slice";
+import statsReducer from "./stats/slice";
 
 const timerPersistConfig = {
   key: "timer",
@@ -25,10 +26,15 @@ const tagsPersistConfig = {
   key: "tags",
   storage,
 };
+const statsPersistConfig = {
+  key: "stats",
+  storage,
+};
 
 const rootReducer = combineReducers({
   timer: persistReducer(timerPersistConfig, timerReducer),
   tags: persistReducer(tagsPersistConfig, tagsReducer),
+  stats: persistReducer(statsPersistConfig, statsReducer),
 });
 
 export const store = configureStore({
