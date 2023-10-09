@@ -7,6 +7,7 @@ import { CiCirclePlus } from "react-icons/ci";
 import { selectTags } from "../../redux/selectors";
 
 import { TagPortal } from "../TagPortal";
+
 import { TagsListItem } from "./TagsListItem";
 
 export const Tags = () => {

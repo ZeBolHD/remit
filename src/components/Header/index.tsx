@@ -2,7 +2,9 @@ import { ReactNode } from "react";
 import { AnimatePresence } from "framer-motion";
 
 import { useSelector } from "react-redux";
+
 import { selectTimer } from "../../redux/selectors";
+
 import { CurrentRoundType, Tabs } from "../../types";
 
 import { HeaderItem } from "./HeaderItem";

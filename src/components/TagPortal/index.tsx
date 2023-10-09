@@ -49,8 +49,8 @@ export const TagPortal = ({ isOpen, closeForm }: TagPortalProps) => {
 				<h2>Add tag</h2>
 				<div className="text">
 					<input
-						className="bg-transparent bg-bottom text-center focus:border-primary-dark dark:focus:border-primary
-            outline outline-0"
+						className="bg-transparent bg-bottom text-center focus:border-primary-dark 
+						dark:focus:border-primary outline outline-0"
 						type="text"
 						value={inputValue}
 						onChange={onChangeInputValue}
