@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
+import debounce from "lodash.debounce";
 
-import { SettingsItem } from "./SettingsItem";
 import { TimerSettings } from "../../redux/timer/types";
 import { selectTimer } from "../../redux/selectors";
 import { setTimerSettings } from "../../redux/timer/slice";
 
-import debounce from "lodash.debounce";
+import { SettingsItem } from "./SettingsItem";
 
 export const Settings = () => {
 	const { focusDuration, breakDuration, rounds } = useSelector(selectTimer);
