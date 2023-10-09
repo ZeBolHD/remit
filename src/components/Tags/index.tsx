@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 
 import { useSelector } from "react-redux";
 import { CiCirclePlus } from "react-icons/ci";
@@ -34,11 +33,11 @@ export const Tags = () => {
 				<TagPortal isOpen={isPortalOpen} closeForm={closeForm} />
 			)}
 			<div className="mt-[50px] py-[10px] max-h-full overflow-y-hidden">
-				<motion.ul layoutScroll className="h-full overflow-y-auto no-scrollbar">
+				<ul className="h-full overflow-y-auto no-scrollbar">
 					{tags.map((tag) => (
 						<TagsListItem tag={tag} key={tag.name} />
 					))}
-				</motion.ul>
+				</ul>
 			</div>
 		</div>
 	);

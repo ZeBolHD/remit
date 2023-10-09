@@ -33,17 +33,21 @@ const tagsSlice = createSlice({
 		},
 
 		addCompletedRound(state, action: PayloadAction<Tag>) {
-			state.tags = state.tags.map((tag) => {
-				if (tag.name === action.payload.name) {
-					return { ...tag, completedRounds: tag.completedRounds + 1 };
-				}
+			const filteredTags = state.tags.filter(
+				(tag) => tag.name !== action.payload.name
+			);
 
-				return tag;
-			});
+			const tag = state.tags.find((tag) => tag.name === action.payload.name);
+
+			state.tags = [
+				{ name: tag!.name, completedRounds: tag!.completedRounds + 1 },
+				...filteredTags,
+			];
 		},
 
 		removeTag(state, action: PayloadAction<Tag>) {
 			state.tags = state.tags.filter((tag) => tag.name !== action.payload.name);
+			state.currentTag = state.tags[0] ? state.tags[0] : initialTag;
 		},
 	},
 });

@@ -17,7 +17,7 @@ interface NavBarProps {
 export const NavBar = ({ currentTab, selectTab }: NavBarProps) => {
 	return (
 		<nav
-			className="box-border w-full min-h-[80px] px-[45px] mt-[25px]
+			className="box-border w-full min-h-[80px] px-[25px] mt-[15px]
       border-[2px] dark:border-primary border-primary-dark rounded-medium"
 		>
 			<ul className="flex justify-between h-full items-center">

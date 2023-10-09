@@ -15,12 +15,15 @@ import {
 	startTimer,
 	tickTimer,
 	toggleTimer,
-	setComplete,
 } from "../../redux/timer/slice";
 
 import { Button } from "./Button";
 
-export const TimerController = () => {
+interface TimerControllerProps {
+	onCompleteRound: () => void;
+}
+
+export const TimerController = ({ onCompleteRound }: TimerControllerProps) => {
 	const { isPlaying, timerId, currentRoundType } = useSelector(selectTimer);
 
 	const dispatch = useDispatch();
@@ -52,15 +55,10 @@ export const TimerController = () => {
 		}
 	};
 
-	const handleResetTimer = () => {
-		dispatch(setComplete());
-	};
-
 	return (
 		<motion.div
 			className={`w-full h-[50px] box-border relative flex items-center px-[60px] border-[2px] 
-      rounded-large mb-0 mt-auto dark:border-primary border-primary-dark
-      justify-center`}
+      rounded-large mb-0 mt-[50px] dark:border-primary border-primary-dark justify-center`}
 		>
 			{currentRoundType === "initial" && (
 				<Button
@@ -85,7 +83,7 @@ export const TimerController = () => {
 						</Button>
 
 						<Button
-							onClick={handleResetTimer}
+							onClick={onCompleteRound}
 							initial={{ right: "50%", translateX: "50%" }}
 							animate={{ right: "15%", translateX: 0 }}
 							exit={{ right: "-5%", opacity: 0 }}

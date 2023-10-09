@@ -9,5 +9,5 @@ export const RoundsStatus = () => {
 
 	const roundsStatus = getRoundsStatus(rounds, currentRound);
 
-	return <ul className="flex">{roundsStatus}</ul>;
+	return <ul className="flex m-auto w-fit">{roundsStatus}</ul>;
 };

@@ -22,7 +22,7 @@ export const App = () => {
 	return (
 		<main
 			className="text-primary-dark  dark:text-primary w-full h-full flex flex-col overflow-hidden
-      px-[45px] py-[30px] m-0 relative"
+      px-[45px] py-[15px] m-0 relative"
 		>
 			<Header currentTab={currentTab} />
 			<IconContext.Provider

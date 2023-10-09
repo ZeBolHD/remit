@@ -11,22 +11,11 @@ import { Tag } from "../../types";
 import { TagSelectorItem } from "./TagSelectorItem";
 import { CurrentTag } from "./CurrentTag";
 
-const variants: Record<string, Variant> = {
-	open: {
-		width: "100%",
-		height: "100%",
-	},
-	closed: {
-		// width: "auto",
-		height: "60px",
-	},
-};
-
 export const TagSelector = () => {
+	const [isListOpen, setIsListOpen] = useState(false);
+
 	const { currentTag, tags } = useSelector(selectTags);
 	const dispatch = useAppDispatch();
-
-	const [isListOpen, setIsListOpen] = useState(false);
 
 	const toggleList = () => {
 		setIsListOpen(!isListOpen);
@@ -54,8 +43,8 @@ export const TagSelector = () => {
 				damping: 30,
 				stiffness: 200,
 			}}
-			className={`${isListOpen ? "w-full h-full py-[15px]" : "w-auto"}
-      absolute flex flex-col border-[2px] px-[20px] py-[10px]
+			className={`${isListOpen ? "w-full h-full py-[10px]" : "w-auto"}
+      absolute flex flex-col border-[2px] px-[15px] py-[5px] 
       border-primary-dark dark:border-primary text-[20px] bg-primary dark:bg-primary-dark 
       rounded-medium z-10 overflow-hidden
        `}

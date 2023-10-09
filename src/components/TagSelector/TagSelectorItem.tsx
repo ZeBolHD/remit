@@ -8,7 +8,7 @@ interface TagSelectorItemProps {
 export const TagSelectorItem = ({ tag, onSelectTag }: TagSelectorItemProps) => {
 	return (
 		<li className="first:mt-0 mt-[15px] ml-[15px]">
-			<p className="w-full text-left" onClick={() => onSelectTag(tag)}>
+			<p className="text-left w-fit" onClick={() => onSelectTag(tag)}>
 				{tag.name}
 			</p>
 		</li>

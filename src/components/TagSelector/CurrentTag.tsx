@@ -27,7 +27,7 @@ export const CurrentTag = ({
 				onClick={() => onSelectTag(tag)}
 				className={`${
 					isListOpen
-						? "py-[10px] px-[15px] border-[2px] border-primary-dark dark:border-primary rounded-medium"
+						? "py-[5px] px-[15px] border-[2px] border-primary-dark dark:border-primary rounded-medium"
 						: ""
 				} w-fit line-clamp-1`}
 			>
