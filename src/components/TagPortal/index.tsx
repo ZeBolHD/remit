@@ -1,9 +1,8 @@
-import { motion, useDeprecatedAnimatedState } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { useAppDispatch } from "../../redux/store";
 import { addTag } from "../../redux/tags/slice";
-import { Tag } from "../../types";
 
 interface TagPortalProps {
   isOpen: boolean;

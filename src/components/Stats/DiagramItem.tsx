@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 interface DiagramItemProps {
   dayOfWeek: string;
   completedRounds: number;
@@ -17,8 +19,9 @@ export const DiagramItem = ({
         className="h-[150px] w-full dark:bg-primary bg-primary-dark rounded-large 
         overflow-hidden flex flex-col"
       >
-        <div
-          style={{ height: height + "%" }}
+        <motion.div
+          initial={{ height: 0 }}
+          animate={{ height: height + "%" }}
           className={`mt-auto mb-0 bg-active `}
         />
       </div>
