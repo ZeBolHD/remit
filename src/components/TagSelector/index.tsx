@@ -1,4 +1,4 @@
-import { motion, Variant } from "framer-motion";
+import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
 import { useState } from "react";

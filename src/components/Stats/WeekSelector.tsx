@@ -16,8 +16,8 @@ export const WeekSelector = ({
 	const dateToday = moment();
 	const dateWithSelectedWeek = dateToday.add(selectedWeek, "week");
 
-	const dateMonday = dateWithSelectedWeek.startOf("isoWeek").format("DD");
-	const dateSunday = dateWithSelectedWeek.endOf("isoWeek").format("DD");
+	const dateMonday = dateWithSelectedWeek.startOf("week").format("DD");
+	const dateSunday = dateWithSelectedWeek.endOf("week").format("DD");
 	const month = dateWithSelectedWeek.format("MMM");
 	const year = dateWithSelectedWeek.format("YYYY");
 

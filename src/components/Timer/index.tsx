@@ -10,6 +10,7 @@ import { RoundsStatus } from "../RoundsStatus";
 import { TagSelector } from "../TagSelector";
 import { addCompletedRound } from "../../redux/tags/slice";
 import { setComplete } from "../../redux/timer/slice";
+import { addStatistic } from "../../redux/stats/slice";
 
 export const Timer = () => {
 	const { time, currentRoundType } = useSelector(selectTimer);
@@ -22,13 +23,14 @@ export const Timer = () => {
 	const onCompleteRound = () => {
 		if (currentRoundType === "focus") {
 			dispatch(addCompletedRound(currentTag));
+			dispatch(addStatistic());
 		}
 
 		dispatch(setComplete());
 	};
 
 	useEffect(() => {
-		if (time < 1) {
+		if (time < 2) {
 			onCompleteRound();
 		}
 	});

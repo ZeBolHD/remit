@@ -1,31 +1,40 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import moment from "moment";
+
 import { Statistic } from "../../types";
 
 interface StatsState {
-  stats: Statistic[];
+	stats: Statistic[];
 }
 
 const initialState: StatsState = {
-  stats: [],
+	stats: [],
 };
 
 const statsSlice = createSlice({
-  name: "stats",
-  initialState,
-  reducers: {
-    addStatistic(state, action: PayloadAction<string>) {
-      state.stats.map((item, index) => {
-        if (item.date === action.payload) {
-          return {
-            date: action.payload,
-            completedRounds: state.stats[index].completedRounds,
-          };
-        }
+	name: "stats",
+	initialState,
+	reducers: {
+		addStatistic(state) {
+			const currentDate = moment().format("DD-MM-YYYY");
 
-        return item;
-      });
-    },
-  },
+			const currentDateStats = state.stats.find(
+				(item) => item.date === currentDate
+			);
+
+			if (currentDateStats) {
+				const index = state.stats.indexOf(currentDateStats);
+				state.stats[index] = {
+					...currentDateStats,
+					completedRounds: currentDateStats.completedRounds + 1,
+				};
+
+				return;
+			}
+
+			state.stats = [{ date: currentDate, completedRounds: 1 }, ...state.stats];
+		},
+	},
 });
 
 export const { addStatistic } = statsSlice.actions;
