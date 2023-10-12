@@ -37,11 +37,15 @@ export const Tags = () => {
 			)}
 
 			<div className="mt-[50px] py-[10px] max-h-full overflow-y-hidden">
-				<ul className="h-full overflow-y-auto no-scrollbar">
-					{tags.map((tag) => (
-						<TagsListItem tag={tag} key={tag.name} />
-					))}
-				</ul>
+				{tags.length === 0 ? (
+					<h2 className="text-[20px] text-center">Add you're first tag</h2>
+				) : (
+					<ul className="h-full overflow-y-auto no-scrollbar">
+						{tags.map((tag) => (
+							<TagsListItem tag={tag} key={tag.name} />
+						))}
+					</ul>
+				)}
 			</div>
 		</div>
 	);

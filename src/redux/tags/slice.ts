@@ -3,18 +3,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Tag } from "../../types";
 
 interface TagsState {
-	currentTag: Tag;
+	currentTag: Tag | null;
 	tags: Tag[];
 }
 
-const initialTag: Tag = {
-	name: "My New Tag",
-	completedRounds: 0,
-};
-
 const initialState: TagsState = {
-	currentTag: initialTag,
-	tags: [initialTag],
+	currentTag: null,
+	tags: [],
 };
 
 const tagsSlice = createSlice({
@@ -26,6 +21,10 @@ const tagsSlice = createSlice({
 				{ name: action.payload, completedRounds: 0 },
 				...state.tags,
 			];
+
+			if (!state.currentTag) {
+				state.currentTag = state.tags[0];
+			}
 		},
 
 		setCurrentTag(state, action: PayloadAction<Tag>) {
@@ -47,7 +46,7 @@ const tagsSlice = createSlice({
 
 		removeTag(state, action: PayloadAction<Tag>) {
 			state.tags = state.tags.filter((tag) => tag.name !== action.payload.name);
-			state.currentTag = state.tags[0] ? state.tags[0] : initialTag;
+			state.currentTag = state.tags[0] ? state.tags[0] : null;
 		},
 	},
 });

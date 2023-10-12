@@ -17,7 +17,7 @@ export const TagsListItem = ({ tag }: TagsListItemProps) => {
 	};
 
 	return (
-		<li className="mt-[30px] first-[mt-0] text-center px-[50px] relative">
+		<li className="mt-[30px] first-[mt-0] px-[50px] relative">
 			<h5 className="text-[20px] text-primary-dark dark:text-primary">
 				{tag.name}
 			</h5>

@@ -22,8 +22,11 @@ export const Timer = () => {
 
 	const onCompleteRound = () => {
 		if (currentRoundType === "focus") {
-			dispatch(addCompletedRound(currentTag));
 			dispatch(addStatistic());
+
+			if (currentTag) {
+				dispatch(addCompletedRound(currentTag));
+			}
 		}
 
 		dispatch(setComplete());

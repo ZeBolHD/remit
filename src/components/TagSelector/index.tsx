@@ -17,6 +17,10 @@ export const TagSelector = () => {
 	const { currentTag, tags } = useSelector(selectTags);
 	const dispatch = useAppDispatch();
 
+	if (!currentTag) {
+		return null;
+	}
+
 	const toggleList = () => {
 		setIsListOpen(!isListOpen);
 	};
