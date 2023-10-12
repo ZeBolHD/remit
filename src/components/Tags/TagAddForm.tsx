@@ -4,6 +4,8 @@ import { useAppDispatch } from "../../redux/store";
 import { addTag } from "../../redux/tags/slice";
 import { Tag } from "../../types";
 
+import { FormButton } from "./FormButton";
+
 interface TagAddFromProps {
 	tags: Tag[];
 	closePortal: () => void;
@@ -27,6 +29,11 @@ export const TagAddFrom = ({ tags, closePortal }: TagAddFromProps) => {
 			return;
 		}
 
+		if (inputValue === "") {
+			setTextError("Tag cannot be empty");
+			return;
+		}
+
 		dispatch(addTag(inputValue));
 
 		closePortal();
@@ -43,7 +50,7 @@ export const TagAddFrom = ({ tags, closePortal }: TagAddFromProps) => {
 			<h3>Add tag</h3>
 			<div className="mt-[30px]">
 				<input
-					className="bg-transparent bg-bottom text-center focus:border-primary-dark 
+					className="bg-transparent bg-bottom text-center w-full focus:border-primary-dark 
 						dark:focus:border-primary outline outline-0"
 					type="text"
 					value={inputValue}
@@ -53,14 +60,7 @@ export const TagAddFrom = ({ tags, closePortal }: TagAddFromProps) => {
 				<div className="w-full h-[2px] bg-primary-dark dark:bg-primary" />
 			</div>
 			<p className="text-[14px] m-auto text-active">{textError}</p>
-			<button
-				className="py-[5px] px-[15px] mt-auto mb-0 mx-auto rounded-medium bg-primary-dark
-					dark:bg-primary w-fit text-primary dark:text-primary-dark
-          "
-				type="submit"
-			>
-				Done
-			</button>
+			<FormButton text="Done" type="submit" />
 		</form>
 	);
 };
