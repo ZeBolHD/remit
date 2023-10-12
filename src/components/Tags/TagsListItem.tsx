@@ -5,11 +5,11 @@ import { removeTag } from "../../redux/tags/slice";
 
 import { Tag } from "../../types";
 
-interface TagsListItem {
+interface TagsListItemProps {
 	tag: Tag;
 }
 
-export const TagsListItem = ({ tag }: TagsListItem) => {
+export const TagsListItem = ({ tag }: TagsListItemProps) => {
 	const dispatch = useAppDispatch();
 
 	const onClickRemove = () => {

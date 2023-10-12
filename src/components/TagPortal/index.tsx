@@ -1,16 +1,17 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import React, { useState } from "react";
 import { createPortal } from "react-dom";
 
 import { useAppDispatch } from "../../redux/store";
 import { addTag } from "../../redux/tags/slice";
+import { Tag } from "../../types";
 
 interface TagPortalProps {
-	isOpen: boolean;
+	tags: Tag[];
 	closeForm: () => void;
 }
 
-export const TagPortal = ({ isOpen, closeForm }: TagPortalProps) => {
+export const TagPortal = ({ tags, closeForm }: TagPortalProps) => {
 	const [inputValue, setInputValue] = useState("New Tag");
 
 	const dispatch = useAppDispatch();
@@ -21,15 +22,17 @@ export const TagPortal = ({ isOpen, closeForm }: TagPortalProps) => {
 
 	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+
+		if (tags.find((tag) => tag.name === inputValue)) {
+			return;
+		}
+
 		dispatch(addTag(inputValue));
+
 		closeForm();
 	};
 
 	const portal = document.getElementById("portal");
-
-	if (!isOpen) {
-		return null;
-	}
 
 	return createPortal(
 		<motion.div
@@ -40,13 +43,13 @@ export const TagPortal = ({ isOpen, closeForm }: TagPortalProps) => {
 			onClick={closeForm}
 		>
 			<form
-				className="w-full h-[200px] flex flex-col py-[15px] px-[25px] justify-between
+				className="w-full h-[250px] box-border flex flex-col py-[40px] px-[25px] justify-between
         text-center text-[20px] text-primary-dark dark:text-primary
         bg-primary dark:bg-primary-dark border-[2px] border-primary-dark dark:border-primary rounded-medium z-[50]"
 				onSubmit={onSubmit}
 				onClick={(e) => e.stopPropagation()}
 			>
-				<h2>Add tag</h2>
+				<h3>Add tag</h3>
 				<div className="text">
 					<input
 						className="bg-transparent bg-bottom text-center focus:border-primary-dark 

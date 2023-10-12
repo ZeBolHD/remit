@@ -30,7 +30,7 @@ export const Timer = () => {
 	};
 
 	useEffect(() => {
-		if (time < 2) {
+		if (time === 0) {
 			onCompleteRound();
 		}
 	});

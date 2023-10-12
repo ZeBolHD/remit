@@ -1,7 +1,5 @@
-import moment, { Moment } from "moment";
-import { useSelector } from "react-redux";
+import { Moment } from "moment";
 
-import { selectStats } from "../../redux/selectors";
 import { Statistic } from "../../types";
 
 import { DiagramItem } from "./DiagramItem";

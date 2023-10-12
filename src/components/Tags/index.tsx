@@ -29,9 +29,7 @@ export const Tags = () => {
 			>
 				<CiCirclePlus size={70} />
 			</button>
-			{isPortalOpen && (
-				<TagPortal isOpen={isPortalOpen} closeForm={closeForm} />
-			)}
+			{isPortalOpen && <TagPortal tags={tags} closeForm={closeForm} />}
 			<div className="mt-[50px] py-[10px] max-h-full overflow-y-hidden">
 				<ul className="h-full overflow-y-auto no-scrollbar">
 					{tags.map((tag) => (

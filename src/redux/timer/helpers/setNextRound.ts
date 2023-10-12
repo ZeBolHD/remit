@@ -1,5 +1,6 @@
 import { CurrentRoundType } from "../../../types";
 import { TimerState } from "../types";
+
 import { convertMinutesToSeconds } from "./convertMinutesToSeconds";
 import { getCurrentRoundType } from "./getCurrentRoundType";
 import { resetTimer } from "./resetTimer";
