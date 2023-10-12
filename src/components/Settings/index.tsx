@@ -27,7 +27,7 @@ export const Settings = () => {
 					name="focusDuration"
 					handleChange={updateSettings}
 					label="Focus"
-					min={0.05}
+					min={10}
 					max={60}
 					step={5}
 					isTime

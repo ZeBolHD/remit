@@ -3,18 +3,19 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { CiCirclePlus } from "react-icons/ci";
 
+import { Portal } from "../Portal";
+
 import { selectTags } from "../../redux/selectors";
 
-import { TagPortal } from "../TagPortal";
-
 import { TagsListItem } from "./TagsListItem";
+import { TagAddFrom } from "./TagAddForm";
 
 export const Tags = () => {
 	const [isPortalOpen, setIsPortalOpen] = useState(false);
 
 	const { tags } = useSelector(selectTags);
 
-	const closeForm = () => {
+	const closePortal = () => {
 		setIsPortalOpen(false);
 	};
 
@@ -29,7 +30,12 @@ export const Tags = () => {
 			>
 				<CiCirclePlus size={70} />
 			</button>
-			{isPortalOpen && <TagPortal tags={tags} closeForm={closeForm} />}
+			{isPortalOpen && (
+				<Portal closePortal={closePortal}>
+					<TagAddFrom tags={tags} closePortal={closePortal} />
+				</Portal>
+			)}
+
 			<div className="mt-[50px] py-[10px] max-h-full overflow-y-hidden">
 				<ul className="h-full overflow-y-auto no-scrollbar">
 					{tags.map((tag) => (
