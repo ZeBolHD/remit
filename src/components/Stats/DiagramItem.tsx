@@ -16,7 +16,7 @@ export const DiagramItem = ({
 	return (
 		<li className="w-[30px] text-center">
 			<div
-				className="h-[150px] w-full dark:bg-primary bg-primary-dark rounded-large 
+				className="h-[125px] w-full dark:bg-primary bg-primary-dark rounded-large 
         overflow-hidden flex flex-col"
 			>
 				<motion.div

@@ -22,7 +22,7 @@ export const Diagram = ({
 	const weekStats = getWeekStats(dateMonday, currentWeekStats);
 
 	return (
-		<div className="w-full mt-[50px]">
+		<div className="w-full mt-[15px]">
 			<ul className="flex w-full justify-between ">
 				{weekStats.map((completedRounds, i) => (
 					<DiagramItem
