@@ -1,19 +1,24 @@
+import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 
-import { useAppDispatch } from "../../redux/store";
-import { removeTag } from "../../redux/tags/slice";
-
 import { Tag } from "../../types";
+import { Portal } from "../Portal";
+
+import { TagDeleteForm } from "./TagDeleteForm";
 
 interface TagsListItemProps {
 	tag: Tag;
 }
 
 export const TagsListItem = ({ tag }: TagsListItemProps) => {
-	const dispatch = useAppDispatch();
+	const [isDeleteFormOpen, setIsDeleteFormOpen] = useState(false);
 
-	const onClickRemove = () => {
-		dispatch(removeTag(tag));
+	const openDeleteForm = () => {
+		setIsDeleteFormOpen(true);
+	};
+
+	const closeDeleteForm = () => {
+		setIsDeleteFormOpen(false);
 	};
 
 	return (
@@ -23,9 +28,14 @@ export const TagsListItem = ({ tag }: TagsListItemProps) => {
 			</h5>
 			<RxCross2
 				className="absolute right-[17%] top-1/2 -translate-y-1/2 cursor-pointer"
-				onClick={onClickRemove}
+				onClick={openDeleteForm}
 				size={20}
 			/>
+			{isDeleteFormOpen && (
+				<Portal closePortal={closeDeleteForm}>
+					<TagDeleteForm tag={tag} closePortal={closeDeleteForm} />
+				</Portal>
+			)}
 			<div className="w-full h-[2px] bg-primary-dark dark:bg-primary" />
 		</li>
 	);

@@ -22,7 +22,7 @@ export const App = () => {
 	return (
 		<main
 			className="text-primary-dark  dark:text-primary w-full h-full flex flex-col overflow-hidden
-      px-[45px] py-[15px] m-0 relative"
+      px-[45px] py-[15px] relative"
 		>
 			<Header currentTab={currentTab} />
 			<IconContext.Provider
@@ -31,7 +31,7 @@ export const App = () => {
 					className: "dark:stroke-primary stroke-primary-dark",
 				}}
 			>
-				<section className="h-full m-full flex flex-col items-center justify-center">
+				<section className="h-full m-full flex flex-col">
 					{TabsComponents[currentTab]}
 				</section>
 				<NavBar currentTab={currentTab} selectTab={selectTab} />
