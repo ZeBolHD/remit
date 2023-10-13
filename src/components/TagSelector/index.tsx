@@ -50,8 +50,10 @@ export const TagSelector = () => {
 			className={`${isListOpen ? "w-full h-full py-[10px]" : "w-auto"}
       absolute flex flex-col border-[2px] px-[15px] py-[5px] 
       border-primary-dark dark:border-primary text-[20px] bg-primary dark:bg-primary-dark 
-      rounded-medium z-10 overflow-hidden
+      rounded-medium z-10 overflow-y-auto no-scrollbar laptop:text-[30px]
+			laptop:px-[30px] laptop:py-[10px]
        `}
+			onClick={toggleList}
 		>
 			<CurrentTag
 				tag={currentTag}

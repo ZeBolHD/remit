@@ -57,8 +57,10 @@ export const TimerController = ({ onCompleteRound }: TimerControllerProps) => {
 
 	return (
 		<motion.div
-			className={`w-full h-[50px] box-border relative flex items-center px-[60px] border-[2px] 
-      rounded-large mb-0 mt-[50px] dark:border-primary border-primary-dark justify-center`}
+			className="w-full h-[50px] box-border relative flex items-center px-[60px] border-[2px] 
+      rounded-large mb-0 mt-[50px] dark:border-primary border-primary-dark justify-center
+			laptop:w-[400px] laptop:h-[60px] laptop:py-[10px]
+			"
 		>
 			{currentRoundType === "initial" && (
 				<Button

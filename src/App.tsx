@@ -1,4 +1,3 @@
-import { IconContext } from "react-icons";
 import { ReactNode, useState } from "react";
 
 import { Header, NavBar, Timer, Stats, Tags, Settings } from "./components";
@@ -21,21 +20,19 @@ export const App = () => {
 
 	return (
 		<main
-			className="text-primary-dark  dark:text-primary w-full h-full flex flex-col overflow-hidden
-      px-[45px] py-[15px] relative"
+			className="text-primary-dark dark:text-primary w-full h-full flex flex-col overflow-hidden
+      px-[45px] py-[15px] relative 
+			mobile:w-[350px] mobile:m-auto mobile:px-0 
+			laptop:flex-row laptop:w-full laptop:py-[60px] laptop:max-w-[1024px]
+			"
 		>
-			<Header currentTab={currentTab} />
-			<IconContext.Provider
-				value={{
-					size: "35px",
-					className: "dark:stroke-primary stroke-primary-dark",
-				}}
-			>
-				<section className="h-full m-full flex flex-col">
+			<div className="w-full flex flex-col flex-1">
+				<Header currentTab={currentTab} />
+				<section className="h-full w-full flex flex-col items-center">
 					{TabsComponents[currentTab]}
 				</section>
-				<NavBar currentTab={currentTab} selectTab={selectTab} />
-			</IconContext.Provider>
+			</div>
+			<NavBar currentTab={currentTab} selectTab={selectTab} />
 		</main>
 	);
 };

@@ -1,27 +1,23 @@
 import { Tag } from "../../types";
 
+import { TagStatisticsItem } from "./TagStatisticsItem";
+
 interface TagStatisticsProps {
 	tags: Tag[];
 }
 
 export const TagStatistics = ({ tags }: TagStatisticsProps) => {
+	const tagsStatistics = tags.map((tag) => <TagStatisticsItem tag={tag} />);
+
 	return (
-		<div className="mt-[15px]">
+		<div className="mt-[15px] laptop:mt-0 laptop:w-full  laptop:ml-[70px]">
 			<div className="flex justify-between ">
-				<h2 className="text-[25px]">Tags</h2>
-				<h2 className="text-[25px]">Sessions</h2>
+				<h2 className="text-[25px] laptop:text-[35px]">Tags</h2>
+				<h2 className="text-[25px] laptop:text-[35px]">Sessions</h2>
 			</div>
 
-			<ul className="text-[20px] h-[20vh] overflow-y-auto no-scrollbar">
-				{tags.map((tag) => (
-					<li className="mt-[10px]" key={tag.name}>
-						<div className="flex justify-between">
-							<p>{tag.name}</p>
-							<p>{tag.completedRounds}</p>
-						</div>
-						<div className="mt-[5px] w-full h-[1px] bg-primary-dark dark:bg-primary" />
-					</li>
-				))}
+			<ul className="text-[20px] h-[20vh] no-scrollbar overflow-y-scroll laptop:mt-[10px] laptop:h-[370px]">
+				{tagsStatistics}
 			</ul>
 		</div>
 	);

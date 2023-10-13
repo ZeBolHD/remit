@@ -5,12 +5,13 @@ import { selectTags, selectTimer } from "../../redux/selectors";
 
 import { formatTime } from "../../helpers/formatTimer";
 
-import { TimerController } from "../TimerController";
 import { RoundsStatus } from "../RoundsStatus";
 import { TagSelector } from "../TagSelector";
 import { addCompletedRound } from "../../redux/tags/slice";
 import { setComplete } from "../../redux/timer/slice";
 import { addStatistic } from "../../redux/stats/slice";
+
+import { TimerController } from "./TimerController";
 
 export const Timer = () => {
 	const { time, currentRoundType } = useSelector(selectTimer);
@@ -39,10 +40,10 @@ export const Timer = () => {
 	});
 
 	return (
-		<div className="h-full w-full flex flex-col items-center mt-[50px] relative">
+		<div className="h-full w-full flex flex-col items-center mt-[50px] relative laptop:mt-[25px]">
 			<TagSelector />
 			<div className="h-fit text-center m-auto">
-				<h2 className="text-[100px] font-normal h-fit m-auto">
+				<h2 className="text-[85px] font-normal h-fit m-auto laptop:text-[150px]">
 					{timeFormatted}
 				</h2>
 				<RoundsStatus />

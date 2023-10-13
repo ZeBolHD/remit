@@ -22,12 +22,12 @@ export const TagsListItem = ({ tag }: TagsListItemProps) => {
 	};
 
 	return (
-		<li className="mt-[30px] first-[mt-0] px-[50px] relative">
+		<li className="mt-[30px] first-[mt-0] relative">
 			<h5 className="text-[20px] text-primary-dark dark:text-primary">
 				{tag.name}
 			</h5>
 			<RxCross2
-				className="absolute right-[17%] top-1/2 -translate-y-1/2 cursor-pointer"
+				className="absolute right-0 top-1/2 -translate-y-1/2 cursor-pointer"
 				onClick={openDeleteForm}
 				size={20}
 			/>

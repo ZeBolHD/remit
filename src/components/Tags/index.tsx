@@ -23,10 +23,12 @@ export const Tags = () => {
 		setIsAddFormOpen(false);
 	};
 
+	const tagList = tags.map((tag) => <TagsListItem tag={tag} key={tag.name} />);
+
 	return (
 		<div
-			className="w-full h-full mt-[50px] relative border-[2px]
-      border-primary-dark dark:border-primary rounded-medium"
+			className="w-full h-full mt-[50px] border-[2px] border-primary-dark dark:border-primary 
+		relative rounded-medium"
 		>
 			<button
 				className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary dark:bg-primary-dark"
@@ -34,29 +36,22 @@ export const Tags = () => {
 			>
 				<CiCirclePlus size={70} />
 			</button>
+			<div
+				className="h-[50vh] mt-[50px] py-[10px] px-[50px] text-[20px] overflow-y-auto no-scrollbar 
+			laptop:w-[500px] laptop:mx-auto laptop:text-[30px] laptop:h-[60vh] laptop:mt-[50px]"
+			>
+				{tags.length === 0 ? (
+					<h2 className="text-center">Add you're first tag</h2>
+				) : (
+					<ul>{tagList}</ul>
+				)}
+			</div>
 
 			{isAddFormOpen && (
 				<Portal closePortal={closeAddForm}>
 					<TagAddFrom tags={tags} closePortal={closeAddForm} />
 				</Portal>
 			)}
-
-			{/* {isDeleteFormOpen && (
-				<Portal closePortal={closeDeleteForm}>
-					<TagDeleteForm tag={}/> 
-				</Portal>
-			)} */}
-			<div className="overflow-hidden">
-				{tags.length === 0 ? (
-					<h2 className="text-[20px] text-center">Add you're first tag</h2>
-				) : (
-					<ul className="h-[50vh] overflow-y-auto no-scrollbar">
-						{tags.map((tag) => (
-							<TagsListItem tag={tag} key={tag.name} />
-						))}
-					</ul>
-				)}
-			</div>
 		</div>
 	);
 };

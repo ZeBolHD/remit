@@ -1,15 +1,22 @@
 import { BsCircleHalf, BsCircleFill, BsCircle } from "react-icons/bs";
 
 interface Status {
-  type: "filled" | "halfFilled" | "empty";
+	type: "filled" | "halfFilled" | "empty";
 }
 
 const icons = {
-  filled: <BsCircleFill size={15} />,
-  halfFilled: <BsCircleHalf size={15} />,
-  empty: <BsCircle size={15} />,
+	filled: <BsCircleFill />,
+	halfFilled: <BsCircleHalf />,
+	empty: <BsCircle />,
 };
 
 export const Status = ({ type }: Status) => {
-  return <li className="ml-[10px] first:ml-0">{icons[type]}</li>;
+	return (
+		<li
+			className="ml-[10px] first:ml-0 w-[15px] h-[15px] 
+    laptop:h-[20px] laptop:w-[20px] laptop:ml-[45px]"
+		>
+			{icons[type]}
+		</li>
+	);
 };

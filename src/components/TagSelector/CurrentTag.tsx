@@ -27,14 +27,15 @@ export const CurrentTag = ({
 				onClick={() => onSelectTag(tag)}
 				className={`${
 					isListOpen
-						? "py-[5px] px-[15px] border-[2px] border-primary-dark dark:border-primary rounded-medium"
+						? `py-[5px] px-[15px] border-[2px] border-primary-dark dark:border-primary rounded-medium 
+						laptop:py-[10px] laptop:px-[20px]`
 						: ""
 				} w-fit line-clamp-1`}
 			>
 				{tag.name}
 			</h5>
 			{!isListOpen ? (
-				<button>
+				<button className="w-[35px] h-[35px]">
 					<RiArrowDropDownLine />
 				</button>
 			) : null}

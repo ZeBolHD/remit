@@ -43,7 +43,8 @@ export const TagAddFrom = ({ tags, closePortal }: TagAddFromProps) => {
 		<form
 			className="w-full h-[250px] box-border flex flex-col pt-[40px] pb-[20px] px-[25px]
         text-center text-[20px] text-primary-dark dark:text-primary
-        bg-primary dark:bg-primary-dark border-[2px] border-primary-dark dark:border-primary rounded-medium z-[50]"
+        bg-primary dark:bg-primary-dark border-[2px] border-primary-dark dark:border-primary rounded-medium z-[50]
+				mobile:w-[350px] laptop:w-[500px] laptop:h-[300px]"
 			onSubmit={onSubmit}
 			onClick={(e) => e.stopPropagation()}
 		>

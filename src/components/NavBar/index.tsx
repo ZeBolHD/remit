@@ -17,10 +17,17 @@ interface NavBarProps {
 export const NavBar = ({ currentTab, selectTab }: NavBarProps) => {
 	return (
 		<nav
-			className="box-border w-full min-h-[80px] px-[25px] mt-[15px]
-      border-[2px] dark:border-primary border-primary-dark rounded-medium"
+			className="box-border w-full h-[80px] px-[25px] mt-[15px]
+      border-[2px] dark:border-primary border-primary-dark rounded-medium
+			laptop:w-fit laptop:mt-0 laptop:py-[100px] laptop:px-[20px] laptop:ml-[80px] laptop:h-full
+			laptop:max-h-max
+			"
 		>
-			<ul className="flex justify-between h-full items-center">
+			<ul
+				className="flex justify-between h-full items-center
+			laptop:flex-col
+			"
+			>
 				<NavBarItem key={Tabs.TIMER} onClick={() => selectTab(Tabs.TIMER)}>
 					<AiOutlineClockCircle
 						className={

@@ -34,13 +34,15 @@ export const SettingsItem = ({
 	});
 
 	return (
-		<li className="flex flex-col text-center text-[20px]">
-			<label className="mb-[5px]" htmlFor={label}>
-				{label}
-			</label>
-			<span className="mb-[5px]">{isTime ? `${value}:00` : value}</span>
+		<li className="text-center">
+			<div className="flex flex-col laptop:flex-row justify-between">
+				<label className="" htmlFor={label}>
+					{label}
+				</label>
+				<span className="">{isTime ? `${value}:00` : value}</span>
+			</div>
 			<input
-				className="range accent-primary-dark dark:accent-primary h-[13px]"
+				className="range accent-primary-dark dark:accent-primary h-[13px] w-full laptop:h-[30px]"
 				type="range"
 				value={value}
 				id={label}

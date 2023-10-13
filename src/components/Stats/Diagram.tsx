@@ -22,17 +22,18 @@ export const Diagram = ({
 	const weekStats = getWeekStats(dateMonday, currentWeekStats);
 
 	return (
-		<div className="w-full mt-[15px]">
-			<ul className="flex w-full justify-between ">
-				{weekStats.map((completedRounds, i) => (
-					<DiagramItem
-						key={i}
-						dayOfWeek={daysOfWeek[i]}
-						completedRounds={completedRounds}
-						max={sessionsForTheWeek}
-					/>
-				))}
-			</ul>
-		</div>
+		<ul
+			className="mt-[15px] flex w-full justify-between 
+		laptop:justify-normal laptop:h-[90%] laptop:mt-0 laptop:w-fit"
+		>
+			{weekStats.map((completedRounds, i) => (
+				<DiagramItem
+					key={i}
+					dayOfWeek={daysOfWeek[i]}
+					completedRounds={completedRounds}
+					max={sessionsForTheWeek}
+				/>
+			))}
+		</ul>
 	);
 };

@@ -19,9 +19,13 @@ export const Settings = () => {
 	return (
 		<div
 			className="w-full h-[360px] m-auto box-border border-[2px] border-primary-dark dark:border-primary
-      rounded-medium py-[25px] px-[50px]"
+      rounded-medium py-[25px] px-[50px] 
+			laptop:mt-[25px] laptop:w-full laptop:h-full laptop:py-[120px] laptop:px-0"
 		>
-			<ul className="flex flex-col justify-between h-full">
+			<ul
+				className="flex flex-col justify-between h-full text-[20px] 
+			laptop:m-auto laptop:w-[500px] laptop:text-[30px]"
+			>
 				<SettingsItem
 					initialValue={focusDuration}
 					name="focusDuration"

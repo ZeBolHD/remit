@@ -21,7 +21,8 @@ export const TagDeleteForm = ({ closePortal, tag }: TagDeleteFormProps) => {
 	return (
 		<form
 			className="h-[250px] py-[50px] w-full text-center bg-primary flex flex-col
-			dark:bg-primary-dark border-[2px] border-primary-dark dark:border-primary rounded-medium"
+			dark:bg-primary-dark border-[2px] border-primary-dark dark:border-primary rounded-medium
+			mobile:w-[350px]"
 		>
 			<h3 className="text-primary-dark dark:text-primary text-[20px]">
 				Delete tag {tag.name}?

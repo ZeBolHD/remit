@@ -19,21 +19,25 @@ export const Stats = () => {
 	} = useDate();
 
 	return (
-		<div className="max-h-full w-full text-center flex flex-col">
-			<h2 className="text-[30px]">{sessionsForTheWeek} sessions</h2>
+		<div className="max-h-full w-full text-center flex flex-col laptop:h-full">
+			<h2 className="text-[30px] laptop:mt-[15px] laptop:text-[40px]">
+				{sessionsForTheWeek} sessions
+			</h2>
 			<WeekSelector
 				selectedWeek={selectedWeek}
 				setNextWeek={setNextWeek}
 				setPreviousWeek={setPreviousWeek}
 			/>
 
-			<Diagram
-				sessionsForTheWeek={sessionsForTheWeek}
-				dateMonday={useDate().dateMonday}
-				currentWeekStats={currentWeekStats}
-			/>
+			<div className="laptop:flex laptop:h-full laptop:mt-[80px] laptop:overflow-hidden">
+				<Diagram
+					sessionsForTheWeek={sessionsForTheWeek}
+					dateMonday={useDate().dateMonday}
+					currentWeekStats={currentWeekStats}
+				/>
 
-			<TagStatistics tags={tags} />
+				<TagStatistics tags={tags} />
+			</div>
 		</div>
 	);
 };
