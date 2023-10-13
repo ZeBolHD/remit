@@ -50,7 +50,7 @@ export const Tags = () => {
 				{tags.length === 0 ? (
 					<h2 className="text-[20px] text-center">Add you're first tag</h2>
 				) : (
-					<ul className="h-[70vh] overflow-y-auto no-scrollbar">
+					<ul className="h-[50vh] overflow-y-auto no-scrollbar">
 						{tags.map((tag) => (
 							<TagsListItem tag={tag} key={tag.name} />
 						))}
