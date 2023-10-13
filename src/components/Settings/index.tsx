@@ -18,7 +18,7 @@ export const Settings = () => {
 
 	return (
 		<div
-			className="w-full box-border h-[360px] border-[2px] border-primary-dark dark:border-primary
+			className="w-full h-[360px] m-auto box-border border-[2px] border-primary-dark dark:border-primary
       rounded-medium py-[25px] px-[50px]"
 		>
 			<ul className="flex flex-col justify-between h-full">
