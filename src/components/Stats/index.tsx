@@ -11,6 +11,7 @@ export const Stats = () => {
 	const { tags } = useSelector(selectTags);
 
 	const {
+		dateMonday,
 		selectedWeek,
 		setNextWeek,
 		setPreviousWeek,
@@ -32,7 +33,7 @@ export const Stats = () => {
 			<div className="laptop:flex laptop:h-full laptop:mt-[80px] laptop:overflow-hidden">
 				<Diagram
 					sessionsForTheWeek={sessionsForTheWeek}
-					dateMonday={useDate().dateMonday}
+					dateMonday={dateMonday}
 					currentWeekStats={currentWeekStats}
 				/>
 

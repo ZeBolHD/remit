@@ -16,8 +16,8 @@ export const useDate = () => {
 
 	const dateWithSelectedWeek = dateToday.add(selectedWeek, "week");
 
-	const dateMonday = dateWithSelectedWeek.clone().startOf("week");
-	const dateSunday = dateWithSelectedWeek.clone().endOf("week");
+	const dateMonday = dateWithSelectedWeek.clone().startOf("isoWeek");
+	const dateSunday = dateWithSelectedWeek.clone().endOf("isoWeek");
 
 	const currentWeekStats = getCurrentWeekStats(stats, dateMonday, dateSunday);
 	const sessionsForTheWeek = getSessionsForTheWeek(currentWeekStats);

@@ -7,7 +7,9 @@ interface TagStatisticsProps {
 }
 
 export const TagStatistics = ({ tags }: TagStatisticsProps) => {
-	const tagsStatistics = tags.map((tag) => <TagStatisticsItem tag={tag} />);
+	const tagsStatistics = tags.map((tag) => (
+		<TagStatisticsItem tag={tag} key={tag.name} />
+	));
 
 	return (
 		<div className="mt-[15px] laptop:mt-0 laptop:w-full  laptop:ml-[70px]">
