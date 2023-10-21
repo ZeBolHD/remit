@@ -16,7 +16,7 @@ export const HeaderItem = ({ heading }: HeaderItemProps) => {
 				damping: 30,
 				stiffness: 400,
 			}}
-			className="text-[40px] font-normal absolute translate-x-[-50%] break-keep w-full
+			className="text-[40px] font-normal absolute translate-x-[-50%] break-keep w-full top-0
       laptop:text-[50px]"
 		>
 			{heading}

@@ -13,6 +13,7 @@
 		"@reduxjs/toolkit": "^1.9.5",
 		"eslint-plugin-import": "^2.28.1",
 		"framer-motion": "^10.16.4",
+		"gh-pages": "^6.0.0",
 		"lodash.debounce": "^4.0.8",
 		"moment": "^2.29.4",
 		"react": "^18.2.0",

@@ -41,7 +41,7 @@ export const Header = ({ currentTab }: { currentTab: Tabs }) => {
 	);
 
 	return (
-		<header className="text-center overflow-hidden min-h-[60px] w-full relative laptop:h-[80px]">
+		<header className="text-center overflow-hidden min-h-[60px] w-full relative laptop:min-h-[80px]">
 			<AnimatePresence>{currentTimerHeaderItem}</AnimatePresence>
 		</header>
 	);

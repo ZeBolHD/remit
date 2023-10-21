@@ -23,7 +23,7 @@ export const App = () => {
 			className="text-primary-dark dark:text-primary w-full h-full flex flex-col overflow-hidden
       px-[45px] py-[15px] relative 
 			mobile:w-[350px] mobile:m-auto mobile:px-0 
-			laptop:flex-row laptop:w-full laptop:py-[60px] laptop:max-w-[1024px]
+			laptop:flex-row laptop:w-[1024px] laptop:py-[60px] laptop:h-[1000px]
 			"
 		>
 			<div className="w-full flex flex-col flex-1">
