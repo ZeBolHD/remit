@@ -11,7 +11,9 @@ export const Stats = () => {
 	const { tags } = useSelector(selectTags);
 
 	const {
+		dateWithSelectedWeek,
 		dateMonday,
+		dateSunday,
 		selectedWeek,
 		setNextWeek,
 		setPreviousWeek,
@@ -25,6 +27,9 @@ export const Stats = () => {
 				{sessionsForTheWeek} sessions
 			</h2>
 			<WeekSelector
+				dateWithSelectedWeek={dateWithSelectedWeek}
+				dateMonday={dateMonday}
+				dateSunday={dateSunday}
 				selectedWeek={selectedWeek}
 				setNextWeek={setNextWeek}
 				setPreviousWeek={setPreviousWeek}

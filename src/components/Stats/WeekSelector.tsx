@@ -1,27 +1,30 @@
 import { IoChevronBack } from "react-icons/io5";
 
-import moment from "moment";
+import { Moment } from "moment";
 
 interface WeekSelectorProps {
+	dateWithSelectedWeek: Moment;
 	selectedWeek: number;
+	dateMonday: Moment;
+	dateSunday: Moment;
 	setNextWeek: () => void;
 	setPreviousWeek: () => void;
 }
 
 export const WeekSelector = ({
-	selectedWeek,
+	dateWithSelectedWeek,
+	dateMonday,
+	dateSunday,
 	setNextWeek,
 	setPreviousWeek,
 }: WeekSelectorProps) => {
-	const dateToday = moment();
-	const dateWithSelectedWeek = dateToday.add(selectedWeek, "week");
-
-	const dateMonday = dateWithSelectedWeek.startOf("week").format("DD");
-	const dateSunday = dateWithSelectedWeek.endOf("week").format("DD");
 	const month = dateWithSelectedWeek.format("MMM");
 	const year = dateWithSelectedWeek.format("YYYY");
 
-	const selectedDate = `${dateMonday} - ${dateSunday} ${month} ${year}`;
+	const dateMondayFormatted = dateMonday.format("DD");
+	const dateSundayFormatted = dateSunday.format("DD");
+
+	const selectedDate = `${dateMondayFormatted} - ${dateSundayFormatted} ${month} ${year}`;
 
 	return (
 		<div className="w-full h-fit mt-[20px] flex justify-between text-[20px] items-center laptop:text-[30px]">
